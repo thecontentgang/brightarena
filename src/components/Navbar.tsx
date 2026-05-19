@@ -164,7 +164,7 @@ const Navigation = () => {
                 <li key={item} className="overflow-visible">
                   <AnimatedLink
                     text={item}
-                    href={`#${item.toLowerCase()}`}
+                    href={`/${item.toLowerCase()}`}
                     onClick={() => setIsOpen(false)}
                     innerRef={(el) => {
                       linksRef.current[index] = el;

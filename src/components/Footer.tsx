@@ -109,7 +109,7 @@ export default function Footer() {
                 href="#" 
                 className="text-[var(--color-background)]/60 hover:text-[var(--color-background)] transition-colors font-medium"
               >
-                parentheses.studio
+                thecontentgang
               </a>
             </div>
 

@@ -1,23 +1,22 @@
-import HeroSection from "./pages/HomePage.tsx/HeroSection"
-import Navigation from "./components/Navbar"
-import AboutSection from "./pages/HomePage.tsx/AboutSection"
-import WhatTrulyMatters from "./pages/HomePage.tsx/WhatTrulyMatters"
-import ProjectsShowcase from "./pages/HomePage.tsx/ProjectsSection"
-import ContactSection from "./pages/HomePage.tsx/ContactSection"
-import Footer from "./components/Footer"
-// import ExpertiseSection from "./pages/HomePage.tsx/ExpertiseSection"
-const App = () => {
-  return (
-    <>
-    <Navigation />
-    <HeroSection />
-    <AboutSection />
-    <WhatTrulyMatters />
-    <ProjectsShowcase />
-    <ContactSection />
-    <Footer />
-    </>
-  )
-}
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import HomePage from "./pages/HomePage/HomePage"
+import AboutPage from './pages/AboutPage/AboutPage';
+import Footer from './components/Footer';
 
-export default App
+export default function App() {
+  return (
+    <Router>
+      {/* Navbar sits outside Routes so it persists across all pages */}
+      <Navbar />
+      
+      <main className="min-h-screen bg-background text-primary selection:bg-primary selection:text-background">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Routes>
+      </main>
+      <Footer />
+    </Router>
+  );
+}

@@ -46,7 +46,7 @@ const MAX_W = "max-w-[1400px]";
 
 // ─── COMPONENT ────────────────────────────────────────────────────────────────
 
-const AboutSection = () => {
+const StatsSection = () => {
   // Desktop refs
   const desktopRef = useRef<HTMLDivElement>(null);
   const projectCountRef = useRef<HTMLSpanElement>(null);
@@ -628,4 +628,4 @@ const AboutSection = () => {
   );
 };
 
-export default AboutSection;
+export default StatsSection;
