@@ -219,7 +219,7 @@ export default function WhatTrulyMatters() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex flex-col lg:flex-row min-h-screen bg-[var(--color-primary)] overflow-hidden my-16 lg:my-32 pt-8 lg:py-24"
+      className="relative flex flex-col lg:flex-row min-h-screen bg-[var(--color-primary)] overflow-hidden   pt-8 lg:py-24"
       aria-label="What truly matters to us"
     >
       {/* ── Left panel ── */}

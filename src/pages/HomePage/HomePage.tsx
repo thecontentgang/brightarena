@@ -15,7 +15,6 @@ const HomePage = () => {
     <WhatTrulyMatters />
     <ProjectsShowcase />
     <ContactSection />
-
     </>
   )
 }
