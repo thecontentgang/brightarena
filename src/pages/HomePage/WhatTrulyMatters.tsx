@@ -321,7 +321,7 @@ export default function WhatTrulyMatters() {
           justify-center
           px-6
           sm:px-12
-          py-20
+          py-10
           lg:py-0
           lg:min-h-screen
         "
@@ -387,6 +387,7 @@ export default function WhatTrulyMatters() {
           w-px
           bg-[var(--color-background)]/20
           self-stretch
+          mb-12
         "
       />
 

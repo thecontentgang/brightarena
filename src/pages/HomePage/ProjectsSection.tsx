@@ -142,131 +142,135 @@ export default function ProjectsShowcase() {
 
   return (
     <>
-      <style>{`
-        .ps-wrap {
-          display: flex;
-          width: 100%;
-          min-height: 100vh;
-          overflow: hidden;
-          background: #F4EDDB;
-        }
+     <style>{`
+  .ps-wrap {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #3A393F;
+  }
 
-        .ps-info {
-          width: 36%;
-          flex-shrink: 0;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          padding: 54px 52px 42px;
-          color: #3A393F;
-          position: relative;
-          z-index: 20;
-        }
+  .ps-info {
+    width: 36%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 54px 52px 42px;
+    background: #F4EDDB;
+    color: #3A393F;
+    position: relative;
+    z-index: 20;
+  }
 
-        .ps-img {
-          flex: 1;
-          position: relative;
-          overflow: hidden;
-        }
+  .ps-img {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: #3A393F;
+  }
 
-        .ps-headline {
-          font-family: var(--font-heading);
-          font-weight: 300;
-          font-size: clamp(2rem, 2.8vw, 3.3rem);
-          line-height: 0.98;
-          letter-spacing: -0.05em;
-          margin: 0;
-          max-width: 580px;
-        }
+  .ps-headline {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: clamp(2rem, 2.8vw, 3.3rem);
+    line-height: 0.98;
+    letter-spacing: -0.05em;
+    margin: 0;
+    max-width: 580px;
+  }
 
-        .ps-btn {
-          width: 40px;
-          height: 40px;
-          border-radius: 999px;
-          border: 1px solid rgba(58,57,63,0.18);
-          background: transparent;
-          color: #3A393F;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: all 0.35s ease;
-        }
+  .ps-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    border: 1px solid rgba(58,57,63,0.18);
+    background: transparent;
+    color: #3A393F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.35s ease;
+  }
 
-        .ps-btn:hover {
-          background: #3A393F;
-          color: #F4EDDB;
-        }
+  .ps-btn:hover {
+    background: #3A393F;
+    color: #F4EDDB;
+  }
 
-        .ps-label {
-          font-size: 9px;
-          letter-spacing: 0.28em;
-          text-transform: uppercase;
-          opacity: 0.5;
-        }
+  .ps-label {
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    opacity: 0.5;
+  }
 
-        .ps-accent-label {
-          font-size: 9px;
-          letter-spacing: 0.28em;
-          text-transform: uppercase;
-          color: #5B5962;
-        }
+  .ps-accent-label {
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #5B5962;
+  }
 
-        .ps-progress-track {
-          height: 1px;
-          background: rgba(58,57,63,0.12);
-          margin-bottom: 28px;
-          position: relative;
-        }
+  .ps-progress-track {
+    height: 1px;
+    background: rgba(58,57,63,0.12);
+    margin-bottom: 28px;
+    position: relative;
+  }
 
-        .ps-progress-fill {
-          position: absolute;
-          inset: 0 auto 0 0;
-          width: 0;
-          background: #3A393F;
-        }
+  .ps-progress-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0;
+    background: #3A393F;
+  }
 
-        .ps-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 1s ease;
-        }
+  .ps-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+  }
 
-        .ps-image:hover {
-          transform: scale(1.03);
-        }
+  .ps-image:hover {
+    transform: scale(1.03);
+  }
 
-        @media (max-width: 1200px) {
-          .ps-info {
-            width: 42%;
-            padding: 46px 40px 36px;
-          }
-        }
+  @media (max-width: 1200px) {
+    .ps-info {
+      width: 42%;
+      padding: 46px 40px 36px;
+    }
+  }
 
-        @media (max-width: 768px) {
-          .ps-wrap {
-            flex-direction: column-reverse;
-            min-height: auto;
-          }
+  @media (max-width: 768px) {
+    .ps-wrap {
+      flex-direction: column-reverse;
+      min-height: auto;
+      background: #F4EDDB;
+    }
 
-          .ps-info {
-            width: 100%;
-            padding: 34px 24px 28px;
-            gap: 48px;
-          }
+    .ps-info {
+      width: 100%;
+      padding: 34px 24px 28px;
+      gap: 48px;
+    }
 
-          .ps-img {
-            width: 100%;
-            height: 52vh;
-          }
+    .ps-img {
+      width: 100%;
+      height: 52vh;
+      background: #3A393F;
+    }
 
-          .ps-headline {
-            font-size: clamp(2rem, 8vw, 3rem);
-            line-height: 1;
-          }
-        }
-      `}</style>
+    .ps-headline {
+      font-size: clamp(2rem, 8vw, 3rem);
+      line-height: 1;
+    }
+  }
+`}</style>
 
       <section
         className="ps-wrap"
