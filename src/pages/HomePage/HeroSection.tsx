@@ -2,29 +2,45 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+const lenisRef = useRef<Lenis | null>(null);
   const headingText = "Where Every Space Tells a Story Worth Living In";
 
-  // --- LENIS SMOOTH SCROLLING SETUP ---
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t: number) =>
+      Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+  });
 
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(0);
+  lenisRef.current = lenis;
 
-    return () => lenis.destroy();
-  }, []);
+  const update = (time: number) => {
+    lenis.raf(time * 1000);
+  };
+
+  lenis.on("scroll", ScrollTrigger.update);
+
+  gsap.ticker.add(update);
+
+  gsap.ticker.lagSmoothing(0);
+
+  return () => {
+    gsap.ticker.remove(update);
+
+    lenis.off("scroll", ScrollTrigger.update);
+
+    lenis.destroy();
+
+    lenisRef.current = null;
+  };
+}, []);
 
   // --- GSAP ANIMATIONS ---
   useEffect(() => {
@@ -102,13 +118,19 @@ const HeroSection = () => {
       );
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+  ScrollTrigger.getAll().forEach((trigger) =>
+    trigger.kill()
+  );
+
+  ctx.revert();
+};
   }, []);
 
   return (
     <section ref={sectionRef} className="hero-section relative w-full h-[100dvh] bg-[var(--color-primary)] overflow-hidden">
       <div className="relative flex flex-col lg:block h-full w-full">
-        
+
         {/* CONTENT (Left side) */}
         <div className="hero-content order-2 lg:absolute lg:left-0 lg:top-0 lg:h-full lg:w-[43%] bg-[var(--color-primary)] flex items-center justify-center px-6 sm:px-8 md:px-10 lg:px-12 xl:px-14 py-10 sm:py-12 md:py-14 lg:py-16 min-h-[58dvh] lg:min-h-screen z-10">
           <div className="max-w-xl w-full flex flex-col items-center text-center lg:items-start lg:text-left">
@@ -122,14 +144,76 @@ const HeroSection = () => {
               sophisticated spaces that blend luxury, comfort, and modern living
               into one seamless experience.
             </p>
-            <button className="group relative translate-y-6 sm:mt-16 w-[90px] h-[90px] sm:w-[105px] sm:h-[105px] rounded-full bg-[var(--color-background)] text-[var(--color-primary)] flex flex-col items-center justify-center overflow-hidden transition-all duration-500 hover:scale-105 shrink-0">
-              <div className="absolute inset-0 rounded-full border border-[var(--color-background)] scale-0 bg-[var(--color-primary)] transition-all duration-500 group-hover:scale-100" />
-              <span className="relative z-10 uppercase tracking-[0.16em] text-[8px] sm:text-[9px] leading-[1.7] text-center transition-colors duration-500 group-hover:text-[var(--color-background)]">
-                View
-                <br />
-                Projects
-              </span>
-            </button>
+            <Link
+              to="/projects"
+              onClick={() => {
+  window.scrollTo(0, 0);
+
+  ScrollTrigger.getAll().forEach((trigger) =>
+    trigger.kill()
+  );
+}}
+            >
+              <button
+                className="
+      group
+      relative
+      translate-y-6
+      sm:mt-16
+      w-[90px]
+      h-[90px]
+      sm:w-[105px]
+      sm:h-[105px]
+      rounded-full
+      bg-[var(--color-background)]
+      text-[var(--color-primary)]
+      flex
+      flex-col
+      items-center
+      justify-center
+      overflow-hidden
+      transition-all
+      duration-500
+      hover:scale-105
+      shrink-0
+    "
+              >
+                <div
+                  className="
+        absolute
+        inset-0
+        rounded-full
+        border
+        border-[var(--color-background)]
+        scale-0
+        bg-[var(--color-primary)]
+        transition-all
+        duration-500
+        group-hover:scale-100
+      "
+                />
+
+                <span
+                  className="
+        relative
+        z-10
+        uppercase
+        tracking-[0.16em]
+        text-[8px]
+        sm:text-[9px]
+        leading-[1.7]
+        text-center
+        transition-colors
+        duration-500
+        group-hover:text-[var(--color-background)]
+      "
+                >
+                  View
+                  <br />
+                  Projects
+                </span>
+              </button>
+            </Link>
           </div>
         </div>
 

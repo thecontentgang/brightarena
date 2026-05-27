@@ -163,30 +163,30 @@ const Navigation = () => {
               {menuItems.map((item, index) => (
                 <li key={item} className="overflow-visible">
                   <AnimatedLink
-                    text={item}
-                    href={`/${item.toLowerCase()}`}
-                    onClick={() => setIsOpen(false)}
-                    innerRef={(el) => {
-                      linksRef.current[index] = el;
-                    }}
-                  />
+  text={item}
+  href={item.toLowerCase() === "home" ? "/" : `/${item.toLowerCase()}`}
+  onClick={() => setIsOpen(false)}
+  innerRef={(el) => {
+    linksRef.current[index] = el;
+  }}
+/>
                 </li>
               ))}
             </ul>
           </nav>
 
           {/* ICONS CONTAINER */}
-         {/* SOCIAL / CONTACT ICONS */}
+          {/* SOCIAL / CONTACT ICONS */}
           <div
             ref={iconsRef}
             className="flex justify-center items-center gap-8 sm:gap-10 mt-12 sm:mt-16 opacity-80"
           >
             {/* INSTAGRAM ICON */}
-            <a 
-              href="https://instagram.com/yourhandle" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              aria-label="Instagram" 
+            <a
+              href="https://instagram.com/yourhandle"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
               className="hover:opacity-100 hover:scale-110 transition-all duration-300"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -195,27 +195,27 @@ const Navigation = () => {
                 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
               </svg>
             </a>
-            
+
             {/* YOUTUBE ICON */}
-            <a 
-              href="https://youtube.com/yourchannel" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              aria-label="YouTube" 
+            <a
+              href="https://youtube.com/yourchannel"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
               className="hover:opacity-100 hover:scale-110 transition-all duration-300"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M2.5 7.1c.1-1.3 1.2-2.4 2.5-2.5C7.9 4.3 12 4.3 12 4.3s4.1 0 7 .3c1.3.1 2.4 1.2 2.5 2.5.3 1.5.3 4.6.3 4.6s0 3.1-.3 4.6c-.1 1.3-1.2 2.4-2.5 2.5-2.9.3-7 .3-7 .3s-4.1 0-7-.3c-1.3-.1-2.4-1.2-2.5-2.5C2.2 14.8 2.2 11.7 2.2 11.7s0-3.1.3-4.6z"/>
-                <polygon points="10 8 16 11.7 10 15.4 10 8"/>
+                <path d="M2.5 7.1c.1-1.3 1.2-2.4 2.5-2.5C7.9 4.3 12 4.3 12 4.3s4.1 0 7 .3c1.3.1 2.4 1.2 2.5 2.5.3 1.5.3 4.6.3 4.6s0 3.1-.3 4.6c-.1 1.3-1.2 2.4-2.5 2.5-2.9.3-7 .3-7 .3s-4.1 0-7-.3c-1.3-.1-2.4-1.2-2.5-2.5C2.2 14.8 2.2 11.7 2.2 11.7s0-3.1.3-4.6z" />
+                <polygon points="10 8 16 11.7 10 15.4 10 8" />
               </svg>
             </a>
-            
+
             {/* WHATSAPP ICON */}
-            <a 
-              href="https://wa.me/1234567890" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              aria-label="WhatsApp" 
+            <a
+              href="https://wa.me/1234567890"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
               className="hover:opacity-100 hover:scale-110 transition-all duration-300"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
