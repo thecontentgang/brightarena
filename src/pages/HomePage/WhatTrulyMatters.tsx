@@ -94,9 +94,17 @@ interface ValueRowProps {
   isLast: boolean;
 }
 
-const ValueRow = ({ item, index, isLast }: ValueRowProps) => {
+const ValueRow = ({
+  item,
+  index,
+  isLast,
+}: ValueRowProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
+
+  const inView = useInView(ref, {
+    once: true,
+    margin: "-40px",
+  });
 
   return (
     <motion.div
@@ -108,39 +116,93 @@ const ValueRow = ({ item, index, isLast }: ValueRowProps) => {
         delay: index * 0.15,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className={`flex flex-col items-start text-left lg:flex-row lg:items-start gap-4 sm:gap-6 lg:gap-12 px-6 sm:px-12 lg:px-24 py-10 lg:py-16 xl:py-24 ${
-        !isLast ? "border-b border-[var(--color-background)]/20" : ""
-      }`}
+      className={`
+        flex
+        flex-col
+        items-start
+        text-left
+        lg:flex-row
+        lg:items-start
+        gap-5
+        sm:gap-7
+        lg:gap-12
+        px-6
+        sm:px-12
+        lg:px-20
+        xl:px-24
+        py-12
+        lg:py-16
+        xl:py-20
+        ${
+          !isLast
+            ? "border-b border-[var(--color-background)]/20"
+            : ""
+        }
+      `}
     >
-      {/* Icon - Positioned exactly as image */}
+
+      {/* ICON */}
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={inView ? { scale: 1, opacity: 1 } : {}}
-        transition={{ duration: 0.6, delay: index * 0.15 + 0.2 }}
-        className="text-[var(--color-background)]/70 pb-2 lg:pb-0"
+        transition={{
+          duration: 0.6,
+          delay: index * 0.15 + 0.2,
+        }}
+        className="
+          text-[var(--color-background)]/70
+          pt-1
+          shrink-0
+        "
       >
         {item.icon}
       </motion.div>
 
-      {/* Text Block */}
+      {/* TEXT */}
       <div className="flex-1 flex flex-col items-start">
+
         <motion.h3
           initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: index * 0.15 + 0.28 }}
-          className="font-heading text-[2.2rem] sm:text-[2.5rem] tracking-tight font-normal text-[var(--color-background)] mb-3 leading-none"
+          transition={{
+            duration: 0.6,
+            delay: index * 0.15 + 0.28,
+          }}
+          className="
+            font-heading
+            text-[2.2rem]
+            sm:text-[2.6rem]
+            tracking-[-0.04em]
+            font-normal
+            text-[var(--color-background)]
+            mb-5
+            leading-none
+          "
         >
           {item.title}
         </motion.h3>
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.7, delay: index * 0.15 + 0.38 }}
-          className="text-[15px] sm:text-[16px] font-light text-[var(--color-background)]/80 leading-[1.65] max-w-xl"
+          transition={{
+            duration: 0.7,
+            delay: index * 0.15 + 0.38,
+          }}
+          className="
+            text-[15px]
+            sm:text-[16px]
+            font-light
+            text-[var(--color-background)]/80
+            leading-[1.8]
+            max-w-[540px]
+          "
         >
           {item.body}
         </motion.p>
+
       </div>
+
     </motion.div>
   );
 };
@@ -149,21 +211,30 @@ const ValueRow = ({ item, index, isLast }: ValueRowProps) => {
 
 export default function WhatTrulyMatters() {
   const sectionRef = useRef<HTMLElement>(null);
+
   const headlineRef = useRef<HTMLHeadingElement>(null);
+
   const leftPanelRef = useRef<HTMLDivElement>(null);
+
   const dividerRef = useRef<HTMLDivElement>(null);
 
-  // GSAP: headline letter-by-letter reveal on scroll
+  // ─── GSAP ───────────────────────────────────────────────
   useEffect(() => {
-    if (!headlineRef.current || !sectionRef.current) return;
+    if (!headlineRef.current || !sectionRef.current)
+      return;
 
-    const words = headlineRef.current.querySelectorAll(".gsap-word");
+    const words =
+      headlineRef.current.querySelectorAll(".gsap-word");
 
     const ctx = gsap.context(() => {
-      // Headline Entrance
+      // HEADLINE
       gsap.fromTo(
         words,
-        { yPercent: 110, opacity: 0, skewY: 4 },
+        {
+          yPercent: 110,
+          opacity: 0,
+          skewY: 4,
+        },
         {
           yPercent: 0,
           opacity: 1,
@@ -179,8 +250,9 @@ export default function WhatTrulyMatters() {
         }
       );
 
-      // Subtle parallax on the left panel (Desktop only)
+      // PARALLAX
       const mm = gsap.matchMedia();
+
       mm.add("(min-width: 1024px)", () => {
         gsap.to(leftPanelRef.current, {
           yPercent: -8,
@@ -193,11 +265,14 @@ export default function WhatTrulyMatters() {
           },
         });
 
-        // Vertical Divider line draw-in
+        // DIVIDER
         if (dividerRef.current) {
           gsap.fromTo(
             dividerRef.current,
-            { scaleY: 0, transformOrigin: "top center" },
+            {
+              scaleY: 0,
+              transformOrigin: "top center",
+            },
             {
               scaleY: 1,
               duration: 1.5,
@@ -219,15 +294,40 @@ export default function WhatTrulyMatters() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex flex-col lg:flex-row min-h-screen bg-[var(--color-primary)] overflow-hidden   pt-8 lg:py-24"
+      className="
+        relative
+        flex
+        flex-col
+        lg:flex-row
+        min-h-screen
+        bg-[var(--color-primary)]
+        overflow-hidden
+        pt-0
+        lg:py-0
+      "
       aria-label="What truly matters to us"
     >
-      {/* ── Left panel ── */}
+
+      {/* ───────────────── LEFT PANEL ───────────────── */}
       <div
         ref={leftPanelRef}
-        className="relative w-full lg:w-[42%] bg-[var(--color-background)]/[0.03] flex items-center justify-center px-6 sm:px-12 py-16 lg:py-0"
+        className="
+          relative
+          w-full
+          lg:w-[42%]
+          bg-[var(--color-background)]/[0.03]
+          flex
+          items-center
+          justify-center
+          px-6
+          sm:px-12
+          py-20
+          lg:py-0
+          lg:min-h-screen
+        "
       >
-        {/* Subtle dot-grid texture using the inverted color */}
+
+        {/* TEXTURE */}
         <div
           className="absolute inset-0 opacity-[0.15]"
           style={{
@@ -237,32 +337,85 @@ export default function WhatTrulyMatters() {
           }}
         />
 
+        {/* HEADING */}
         <h2
           ref={headlineRef}
-          className="relative font-heading font-light text-[3.2rem] sm:text-[4rem] lg:text-[4.5rem] leading-[1.15] text-[var(--color-background)] text-center flex flex-col items-center justify-center mx-auto"
+          className="
+            relative
+            font-heading
+            font-light
+            text-[3rem]
+            sm:text-[4.5rem]
+            lg:text-[5.5rem]
+            leading-[0.95]
+            tracking-[-0.05em]
+            text-[var(--color-background)]
+            text-center
+            flex
+            flex-col
+            items-center
+            justify-center
+            mx-auto
+            max-w-[700px]
+          "
         >
-          {["What truly matters", "to us"].map((word) => (
-            <span
-              key={word}
-              className="block overflow-hidden lg:pb-3"
-            >
-              <span className="gsap-word block">{word}</span>
-            </span>
-          ))}
+
+          {["What truly matters", "to us"].map(
+            (word) => (
+              <span
+                key={word}
+                className="block overflow-hidden lg:pb-3"
+              >
+                <span className="gsap-word block">
+                  {word}
+                </span>
+              </span>
+            )
+          )}
+
         </h2>
+
       </div>
 
-      {/* ── Vertical divider (Desktop Only) ── */}
+      {/* ───────────────── DIVIDER ───────────────── */}
       <div
         ref={dividerRef}
-        className="hidden lg:block flex-shrink-0 w-px bg-[var(--color-background)]/20 self-stretch"
+        className="
+          hidden
+          lg:block
+          flex-shrink-0
+          w-px
+          bg-[var(--color-background)]/20
+          self-stretch
+        "
       />
 
-      {/* ── Horizontal divider (Mobile Only) ── */}
-      <div className="block lg:hidden w-auto mx-6 sm:mx-12 h-px bg-[var(--color-background)]/20" />
+      {/* MOBILE DIVIDER */}
+      <div
+        className="
+          block
+          lg:hidden
+          w-auto
+          mx-6
+          sm:mx-12
+          h-px
+          bg-[var(--color-background)]/20
+        "
+      />
 
-      {/* ── Right panel ── */}
-      <div className="w-full lg:w-[58%] flex flex-col justify-center py-4 lg:py-0">
+      {/* ───────────────── RIGHT PANEL ───────────────── */}
+      <div
+        className="
+          w-full
+          lg:w-[58%]
+          flex
+          flex-col
+          justify-center
+          py-8
+          lg:py-0
+        "
+      >
+
         {VALUES.map((item, i) => (
           <ValueRow
             key={item.id}
@@ -271,7 +424,9 @@ export default function WhatTrulyMatters() {
             isLast={i === VALUES.length - 1}
           />
         ))}
+
       </div>
+
     </section>
   );
 }

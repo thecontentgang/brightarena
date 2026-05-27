@@ -8,39 +8,39 @@ gsap.registerPlugin(ScrollTrigger);
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-const lenisRef = useRef<Lenis | null>(null);
+  const lenisRef = useRef<Lenis | null>(null);
   const headingText = "Where Every Space Tells a Story Worth Living In";
 
   useEffect(() => {
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t: number) =>
-      Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true,
-  });
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t: number) =>
+        Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
 
-  lenisRef.current = lenis;
+    lenisRef.current = lenis;
 
-  const update = (time: number) => {
-    lenis.raf(time * 1000);
-  };
+    const update = (time: number) => {
+      lenis.raf(time * 1000);
+    };
 
-  lenis.on("scroll", ScrollTrigger.update);
+    lenis.on("scroll", ScrollTrigger.update);
 
-  gsap.ticker.add(update);
+    gsap.ticker.add(update);
 
-  gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(0);
 
-  return () => {
-    gsap.ticker.remove(update);
+    return () => {
+      gsap.ticker.remove(update);
 
-    lenis.off("scroll", ScrollTrigger.update);
+      lenis.off("scroll", ScrollTrigger.update);
 
-    lenis.destroy();
+      lenis.destroy();
 
-    lenisRef.current = null;
-  };
-}, []);
+      lenisRef.current = null;
+    };
+  }, []);
 
   // --- GSAP ANIMATIONS ---
   useEffect(() => {
@@ -98,7 +98,7 @@ const lenisRef = useRef<Lenis | null>(null);
       tl.to(
         ".hero-word",
         {
-          color: "#F4EDDB",
+          color: "#3A393F",
           stagger: 0.15,
           duration: 0.5,
           ease: "none",
@@ -119,12 +119,12 @@ const lenisRef = useRef<Lenis | null>(null);
     }, sectionRef);
 
     return () => {
-  ScrollTrigger.getAll().forEach((trigger) =>
-    trigger.kill()
-  );
+      ScrollTrigger.getAll().forEach((trigger) =>
+        trigger.kill()
+      );
 
-  ctx.revert();
-};
+      ctx.revert();
+    };
   }, []);
 
   return (
@@ -147,12 +147,12 @@ const lenisRef = useRef<Lenis | null>(null);
             <Link
               to="/projects"
               onClick={() => {
-  window.scrollTo(0, 0);
+                window.scrollTo(0, 0);
 
-  ScrollTrigger.getAll().forEach((trigger) =>
-    trigger.kill()
-  );
-}}
+                ScrollTrigger.getAll().forEach((trigger) =>
+                  trigger.kill()
+                );
+              }}
             >
               <button
                 className="
@@ -218,27 +218,29 @@ const lenisRef = useRef<Lenis | null>(null);
         </div>
 
         {/* IMAGE WRAPPER */}
-        <div className="hero-image-wrapper order-1 lg:absolute lg:right-0 lg:top-0 h-[42dvh] sm:h-[48dvh] md:h-[52dvh] lg:h-full lg:w-[57%] relative overflow-hidden flex-shrink-0 z-20">
-          <img
-            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop"
-            alt="Luxury Interior"
-            className="hero-image absolute inset-0 w-full h-full object-cover scale-100 transform origin-right"
+        <div className="hero-image-wrapper order-1 lg:absolute lg:right-0 lg:top-0 h-[42dvh] sm:h-[48dvh] md:h-[52dvh] lg:h-full lg:w-[57%] relative flex-shrink-0 z-20 overflow-hidden">
+          <iframe
+            className="hero-image absolute inset-0 w-full h-full scale-100 transform origin-right pointer-events-none"
+            src="https://www.youtube.com/embed/MbZFx64qgNU?autoplay=1&mute=1&controls=0&loop=1&playlist=MbZFx64qgNU&playsinline=1&rel=0&showinfo=0&modestbranding=1"
+            title="Luxury Interior Video"
+            allow="autoplay; fullscreen"
+            allowFullScreen
           />
-          <div className="absolute inset-0 bg-black/45" />
-          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/20 to-transparent" />
+          
+          
 
           {/* EXPANDED CONTENT */}
           <div className="hero-expand-content absolute inset-0 hidden lg:flex flex-col items-center justify-center opacity-0 px-10 z-30">
             <div className="max-w-5xl text-center flex flex-col items-center -translate-y-12">
               <h2 className="font-heading font-bold text-[2.5rem] xl:text-[4rem] leading-[0.95] tracking-[-0.05em] flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.1em]">
                 {headingText.split(" ").map((word, index) => (
-                  <span key={index} className="hero-word text-white/30">
+                  <span key={index} className="hero-word text-transparent bg-clip-text bg-gradient-to-r from-[#F4EDDB] to-[#3A393F]">
                     {word}
                   </span>
                 ))}
               </h2>
             </div>
-            <p className="hero-subtext absolute bottom-12 sm:bottom-16 z-40 max-w-3xl text-center opacity-0 translate-y-10 text-[#F4EDDB] text-sm sm:text-base md:text-lg leading-[1.8] font-body font-light px-4">
+            <p className="hero-subtext absolute bottom-12 sm:bottom-16 z-40 max-w-3xl text-center opacity-0 translate-y-10 text-[#3A393F] text-sm sm:text-base md:text-lg leading-[1.8] font-body font-light px-4">
               Our spaces breathe life into walls, warmth into rooms, and purpose into every corner. At Bright Arena Interiors, we craft environments that are distinctly yours — designed with intention, finished with care.
             </p>
           </div>

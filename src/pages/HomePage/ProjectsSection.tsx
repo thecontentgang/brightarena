@@ -13,7 +13,7 @@ const ChevronLeft = () => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth={2}
+    strokeWidth={1.8}
     strokeLinecap="round"
     strokeLinejoin="round"
     width={16}
@@ -28,7 +28,7 @@ const ChevronRight = () => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth={2}
+    strokeWidth={1.8}
     strokeLinecap="round"
     strokeLinejoin="round"
     width={16}
@@ -42,19 +42,12 @@ const ChevronRight = () => (
 
 const PROJECTS = projectsData.map((project) => ({
   id: project.id,
-
   headline: project.shortDescription,
-
   image: project.heroImage,
-
   brand: "Bright Arena Interiors",
-
   year: project.year,
-
   category: project.houseType,
-
   location: project.location,
-
   slug: project.slug,
 }));
 
@@ -128,9 +121,7 @@ export default function ProjectsShowcase() {
 
     tweenRef.current = gsap.to(progressRef.current, {
       val: 100,
-
       duration: AUTOPLAY_DURATION / 1000,
-
       ease: "none",
 
       onUpdate: () => {
@@ -155,20 +146,21 @@ export default function ProjectsShowcase() {
         .ps-wrap {
           display: flex;
           width: 100%;
-          height: 100svh;
-          min-height: 560px;
+          min-height: 100vh;
           overflow: hidden;
+          background: #F4EDDB;
         }
 
         .ps-info {
-          width: 38%;
+          width: 36%;
           flex-shrink: 0;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          padding: 44px 44px 36px;
-          background: #3A393F;
-          color: #F4EDDB;
+          padding: 54px 52px 42px;
+          color: #3A393F;
+          position: relative;
+          z-index: 20;
         }
 
         .ps-img {
@@ -180,29 +172,30 @@ export default function ProjectsShowcase() {
         .ps-headline {
           font-family: var(--font-heading);
           font-weight: 300;
-          font-size: clamp(1.9rem, 2.8vw, 3rem);
-          line-height: 1.05;
-          letter-spacing: -0.03em;
+          font-size: clamp(2rem, 2.8vw, 3.3rem);
+          line-height: 0.98;
+          letter-spacing: -0.05em;
           margin: 0;
+          max-width: 580px;
         }
 
         .ps-btn {
-          width: 38px;
-          height: 38px;
+          width: 40px;
+          height: 40px;
           border-radius: 999px;
-          border: 1px solid rgba(244,237,219,0.2);
+          border: 1px solid rgba(58,57,63,0.18);
           background: transparent;
-          color: #F4EDDB;
+          color: #3A393F;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: all 0.35s ease;
         }
 
         .ps-btn:hover {
-          background: #F4EDDB;
-          color: #3A393F;
+          background: #3A393F;
+          color: #F4EDDB;
         }
 
         .ps-label {
@@ -216,13 +209,13 @@ export default function ProjectsShowcase() {
           font-size: 9px;
           letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: #DDD3BE;
+          color: #5B5962;
         }
 
         .ps-progress-track {
           height: 1px;
-          background: rgba(244,237,219,0.12);
-          margin-bottom: 22px;
+          background: rgba(58,57,63,0.12);
+          margin-bottom: 28px;
           position: relative;
         }
 
@@ -230,19 +223,37 @@ export default function ProjectsShowcase() {
           position: absolute;
           inset: 0 auto 0 0;
           width: 0;
-          background: #F4EDDB;
+          background: #3A393F;
+        }
+
+        .ps-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 1s ease;
+        }
+
+        .ps-image:hover {
+          transform: scale(1.03);
+        }
+
+        @media (max-width: 1200px) {
+          .ps-info {
+            width: 42%;
+            padding: 46px 40px 36px;
+          }
         }
 
         @media (max-width: 768px) {
           .ps-wrap {
             flex-direction: column-reverse;
-            height: auto;
+            min-height: auto;
           }
 
           .ps-info {
             width: 100%;
-            padding: 28px 24px;
-            gap: 40px;
+            padding: 34px 24px 28px;
+            gap: 48px;
           }
 
           .ps-img {
@@ -251,7 +262,8 @@ export default function ProjectsShowcase() {
           }
 
           .ps-headline {
-            font-size: clamp(1.6rem, 7vw, 2.3rem);
+            font-size: clamp(2rem, 8vw, 3rem);
+            line-height: 1;
           }
         }
       `}</style>
@@ -262,13 +274,13 @@ export default function ProjectsShowcase() {
         onMouseLeave={() => setPaused(false)}
       >
 
-        {/* ───────────────── INFO PANEL ───────────────── */}
+        {/* ───────────────── LEFT PANEL ───────────────── */}
         <div className="ps-info">
 
           {/* TOP */}
           <div>
 
-            <div className="ps-label mb-3">
+            <div className="ps-label mb-4">
               {String(index + 1).padStart(2, "0")} —{" "}
               {String(PROJECTS.length).padStart(2, "0")}
             </div>
@@ -277,9 +289,9 @@ export default function ProjectsShowcase() {
               <motion.div
                 key={`cat-${p.id}`}
                 className="ps-accent-label"
-                initial={{ opacity: 0, y: 6 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
+                exit={{ opacity: 0, y: -8 }}
                 transition={{
                   duration: 0.35,
                   ease: EASE_TEXT,
@@ -296,11 +308,11 @@ export default function ProjectsShowcase() {
             <motion.h2
               key={`h-${p.id}`}
               className="ps-headline"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -14 }}
+              exit={{ opacity: 0, y: -16 }}
               transition={{
-                duration: 0.55,
+                duration: 0.65,
                 ease: EASE_TEXT,
               }}
             >
@@ -323,7 +335,7 @@ export default function ProjectsShowcase() {
                   ease: EASE_TEXT,
                 }}
                 style={{
-                  marginBottom: 24,
+                  marginBottom: 28,
                   letterSpacing: "0.3em",
                 }}
               >
@@ -363,11 +375,11 @@ export default function ProjectsShowcase() {
                   >
                     <motion.span
                       animate={{
-                        opacity: i === index ? 1 : 0.2,
+                        opacity: i === index ? 1 : 0.18,
                         backgroundColor:
                           i === index
-                            ? "#F4EDDB"
-                            : "#5B5962",
+                            ? "#3A393F"
+                            : "#CFC5B1",
                       }}
                       transition={{
                         duration: 0.35,
@@ -409,7 +421,7 @@ export default function ProjectsShowcase() {
               animate="center"
               exit="exit"
               transition={{
-                duration: 0.9,
+                duration: 1,
                 ease: EASE_SLIDE,
               }}
               style={{
@@ -423,14 +435,7 @@ export default function ProjectsShowcase() {
                 <img
                   src={p.image}
                   alt={p.category}
-                  className="
-                    w-full
-                    h-full
-                    object-cover
-                    hover:scale-[1.02]
-                    transition-transform
-                    duration-700
-                  "
+                  className="ps-image"
                 />
 
               </Link>
@@ -440,6 +445,7 @@ export default function ProjectsShowcase() {
           </AnimatePresence>
 
         </div>
+
       </section>
     </>
   );
