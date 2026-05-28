@@ -158,8 +158,8 @@ const HeroSection = () => {
                 className="
       group
       relative
-      translate-y-6
-      sm:mt-16
+      translate-y-2
+      sm:mt-10
       w-[90px]
       h-[90px]
       sm:w-[105px]
