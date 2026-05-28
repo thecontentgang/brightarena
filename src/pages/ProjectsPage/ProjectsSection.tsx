@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { projectsData } from "../ProjectDetailsPage/ProjectsData";
+import { projectsData } from "./ProjectsData";
 
 export default function ProjectsSection() {
   return (
@@ -36,17 +36,24 @@ export default function ProjectsSection() {
               {project.title}
             </motion.h2>
 
-            {/* IMAGE */}
+            {/* PLACEHOLDER IMAGE */}
             <motion.div
               initial={{ opacity: 0, scale: 0.97 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7 }}
               viewport={{ once: true }}
-              className="overflow-hidden"
+              className="
+                overflow-hidden
+                relative
+                bg-white/10
+                border
+                border-white/10
+                flex
+                items-center
+                justify-center
+              "
             >
-              <img
-                src={project.heroImage}
-                alt={project.title}
+              <div
                 className="
                   w-full
                   h-[220px]
@@ -54,13 +61,58 @@ export default function ProjectsSection() {
                   md:h-[360px]
                   lg:h-[420px]
                   xl:h-[460px]
-                  object-cover
-                  object-center
-                  hover:scale-[1.02]
-                  transition-transform
-                  duration-700
+                  flex
+                  flex-col
+                  items-center
+                  justify-center
+                  text-center
+                  px-6
                 "
-              />
+              >
+                {/* Icon */}
+                <div
+                  className="
+                    w-20
+                    h-20
+                    rounded-full
+                    bg-white/10
+                    flex
+                    items-center
+                    justify-center
+                    mb-6
+                  "
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-10 h-10 opacity-60"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                    style={{ color: project.textColor }}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3.75 21h16.5M4.5 21V7.5a2.25 2.25 0 012.25-2.25h10.5A2.25 2.25 0 0119.5 7.5V21M9 9h.008v.008H9V9zm0 3h.008v.008H9V12zm0 3h.008v.008H9V15zm3-6h.008v.008H12V9zm0 3h.008v.008H12V12zm0 3h.008v.008H12V15zm3-6h.008v.008H15V9zm0 3h.008v.008H15V12zm0 3h.008v.008H15V15z"
+                    />
+                  </svg>
+                </div>
+
+                {/* Placeholder Text */}
+                <p
+                  style={{ color: project.textColor }}
+                  className="
+                    text-xs
+                    md:text-sm
+                    uppercase
+                    tracking-[0.3em]
+                    opacity-60
+                  "
+                >
+                  Project Preview Image
+                </p>
+              </div>
             </motion.div>
 
             {/* DESCRIPTION + BUTTON */}

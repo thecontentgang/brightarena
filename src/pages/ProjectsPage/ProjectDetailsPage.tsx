@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import {useEffect} from "react";
 import { useParams } from "react-router-dom";
-import { projectsData } from "../ProjectDetailsPage/ProjectsData"
+import { projectsData } from "./ProjectsData"
 
 export default function ProjectDetailsPage() {
   const { slug } = useParams();

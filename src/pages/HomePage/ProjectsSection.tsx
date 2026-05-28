@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
-import { projectsData } from "../ProjectDetailsPage/ProjectsData";
+import { projectsData } from "../ProjectsPage/ProjectsData";
 
 // ─── Icons ─────────────────────────────────────────────────────────────────
 

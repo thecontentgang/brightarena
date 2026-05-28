@@ -1,7 +1,7 @@
 import Hero from "../AboutPage/HeroAbout";
 import BrandPhilosophySection from "./BrandPhilosophySection";
 import MissionVisionSection from "./MissionVisionSection";
-import ProjectSection from "./ProjectsSection";
+// import ProjectSection from "./ProjectsSection";
 import TeamSection from "./TeamSection";
 import ContactSection from "../HomePage/ContactSection";
 
@@ -10,7 +10,7 @@ const AboutPage = () => {
     <>
     <Hero />
     <BrandPhilosophySection />
-    <ProjectSection />
+    {/* <ProjectSection /> */}
     <TeamSection />
     <MissionVisionSection />
     <ContactSection />

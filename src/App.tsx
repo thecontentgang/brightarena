@@ -10,7 +10,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
-import ProjectDetailsPage from "./pages/ProjectDetailsPage/ProjectDetailsPage";
+import ProjectDetailsPage from "./pages/ProjectsPage/ProjectDetailsPage";
 import ServicesPage from "./pages/ServicesPage/ServicesPage";
 import ServiceDetailsPage from "./pages/ServicesPage/ServiceDetailsPage";
 import DesignPage from "./pages/DesignPage/DesignPage";
