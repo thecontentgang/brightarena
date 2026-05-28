@@ -11,6 +11,12 @@ import AboutPage from "./pages/AboutPage/AboutPage";
 import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage/ProjectDetailsPage";
+import ServicesPage from "./pages/ServicesPage/ServicesPage";
+import ServiceDetailsPage from "./pages/ServicesPage/ServiceDetailsPage";
+import DesignPage from "./pages/DesignPage/DesignPage";
+import DesignDetailsPage from "./pages/DesignPage/DesignDetailsPage";
+import BlogPage from "./pages/BlogPage/BlogPage";
+import BlogDetailsPage from "./pages/BlogPage/BlogDetailPage";
 
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -49,6 +55,25 @@ export default function App() {
             element={<ProjectDetailsPage />}
           />
 
+          <Route path="/services"
+            element={<ServicesPage />}
+          />
+
+          <Route
+            path="/services/:slug"
+            element={<ServiceDetailsPage />}
+          />
+          <Route
+            path="/blogs"
+            element={<BlogPage />}
+          />
+          <Route
+            path="/blogs/:slug"
+            element={<BlogDetailsPage />}
+          />
+
+          <Route path="/designs" element={<DesignPage />} />
+          <Route path="/designs/:slug" element={<DesignDetailsPage />} />
           <Route
             path="/contact"
             element={<ContactPage />}
