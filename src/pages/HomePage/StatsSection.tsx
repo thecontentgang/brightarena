@@ -14,8 +14,7 @@ const projectImages = [
   "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1600566752355-35792bed3a88?q=80&w=800&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1600121848594-d8644e57abab?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1600607687644-c7171b42498b?q=80&w=800&auto=format&fit=crop",
+
 ];
 
 const reviews = [
@@ -160,17 +159,26 @@ export default function HorizontalStatsSection() {
   }, []);
 
   // SHARED
-  const slideWrapper =
-    "horizontal-slide w-screen h-screen flex-shrink-0 flex items-center justify-center p-6 md:p-12 lg:p-20 relative";
+const slideWrapper =
+  "horizontal-slide w-screen h-[80dvh] md:h-screen flex-shrink-0 flex items-center justify-center px-5 sm:px-6 md:px-12 lg:px-20 py-8 md:py-0 relative";
 
-  const contentGrid =
-    "w-full max-w-[1450px] h-full flex flex-col lg:flex-row items-center justify-center gap-10 md:gap-20";
+const contentGrid =
+  "w-full max-w-[1450px] h-full flex flex-col justify-center lg:flex-row items-center gap-8 md:gap-16";
 
   return (
     <section
-      ref={containerRef}
-      className="relative w-full h-screen overflow-hidden"
-    >
+  ref={containerRef}
+  className="
+    relative
+    w-full
+    h-screen
+    overflow-hidden
+    pt-[10vh]
+    sm:pt-[8vh]
+    md:pt-0
+  "
+>
+
       <div className="flex h-full w-[400vw]">
 
         {/* ───────────────── SLIDE 1 ───────────────── */}
@@ -242,8 +250,8 @@ export default function HorizontalStatsSection() {
                   ref={projectCountRef}
                   className="
                     font-heading
-                    text-[7rem]
-                    md:text-[11rem]
+                    text-[4.5rem] sm:text-[6rem] md:text-[10rem]
+                    
                     lg:text-[14rem]
                     leading-none
                     tracking-tighter
@@ -270,11 +278,16 @@ export default function HorizontalStatsSection() {
             </div>
 
             {/* RIGHT */}
-            <div className="flex-1 grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 w-full">
+           <div className="flex-1 grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 w-full max-w-[520px] lg:max-w-none mx-auto">
               {projectImages.map((src, idx) => (
                 <div
                   key={idx}
-                  className="aspect-[4/5] overflow-hidden"
+                  className="
+  aspect-[4/4.5]
+  sm:aspect-[4/5]
+  overflow-hidden
+  rounded-2xl
+"
                 >
                   <img
                     src={src}
@@ -311,7 +324,7 @@ export default function HorizontalStatsSection() {
                 <span
                   className="
                     font-heading
-                    text-[7rem]
+                   text-[4.5rem] sm:text-[6rem] 
                     md:text-[10rem]
                     lg:text-[13rem]
                     leading-none
@@ -414,8 +427,8 @@ export default function HorizontalStatsSection() {
                   ref={retentionCountRef}
                   className="
                     font-heading
-                    text-[7rem]
-                    md:text-[11rem]
+                   text-[4.5rem] sm:text-[6rem] md:text-[10rem]
+                    
                     lg:text-[14rem]
                     leading-none
                     tracking-tighter

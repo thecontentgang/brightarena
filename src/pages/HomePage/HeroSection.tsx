@@ -128,7 +128,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="hero-section relative w-full h-[100dvh] bg-[var(--color-primary)] overflow-hidden">
+    <section ref={sectionRef} className="hero-section relative w-full  h-[120dvh] bg-[var(--color-primary)] overflow-hidden">
       <div className="relative flex flex-col lg:block h-full w-full">
 
         {/* CONTENT (Left side) */}
@@ -218,7 +218,7 @@ const HeroSection = () => {
         </div>
 
         {/* IMAGE WRAPPER */}
-        <div className="hero-image-wrapper order-1 lg:absolute lg:right-0 lg:top-0 h-[42dvh] sm:h-[48dvh] md:h-[52dvh] lg:h-full lg:w-[57%] relative flex-shrink-0 z-20 overflow-hidden">
+       <div className="hero-image-wrapper order-1 lg:absolute lg:right-0 lg:top-0 h-[50dvh] sm:h-[58dvh] md:h-[65dvh] lg:h-full lg:w-[65%] relative flex-shrink-0 z-20 overflow-hidden">
           <iframe
             className="hero-image absolute inset-0 w-full h-full scale-100 transform origin-right pointer-events-none"
             src="https://www.youtube.com/embed/MbZFx64qgNU?autoplay=1&mute=1&controls=0&loop=1&playlist=MbZFx64qgNU&playsinline=1&rel=0&showinfo=0&modestbranding=1"

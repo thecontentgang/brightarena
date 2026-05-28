@@ -190,96 +190,109 @@ const Navigation = () => {
   return (
     <>
       {/* LOGO */}
-      <div
-        className="
-          fixed
-          top-6
-          left-6
-          lg:top-14
-          lg:left-auto
-          lg:-right-2
-          xl:-right-10
-          z-40
-          pointer-events-none
-        "
-      >
-        <img
-          src={BrightLogo}
-          alt="Logo"
-          className="
-            h-[72px]
-sm:h-[95px]
-md:h-[110px]
-lg:h-[140px]
-xl:h-[180px]
-            w-auto
-            object-contain
-            lg:rotate-90
-            origin-center
-          "
-        />
-      </div>
+     {/* LOGO */}
+<div
+  className="
+    fixed
+    top-4
+    sm:top-5
+    md:top-6
+    left-4
+    sm:left-5
+    md:left-6
+
+    lg:top-14
+    lg:left-auto
+    lg:-right-2
+    xl:-right-10
+
+    z-40
+    pointer-events-none
+  "
+>
+  <img
+    src={BrightLogo}
+    alt="Logo"
+    className="
+      h-[62px]
+      sm:h-[78px]
+      md:h-[92px]
+      lg:h-[140px]
+      xl:h-[180px]
+      w-auto
+      object-contain
+      lg:rotate-90
+      origin-center
+    "
+  />
+</div>
 
       {/* MENU BUTTON */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className="
-          fixed
-          top-6
-          right-6
-          lg:top-auto
-          lg:bottom-8
-          lg:right-8
-          z-40
-          group
-          flex
-          items-center
-          gap-4
-          mix-blend-difference
-          text-white
-          cursor-pointer
-        "
-      >
-        <span
-          className="
-            uppercase
-            tracking-[0.35em]
-            text-[10px]
-            sm:text-xs
-            font-medium
-            transition-all
-            duration-500
-            group-hover:tracking-[0.45em]
-          "
-        >
-          Menu
-        </span>
+      {/* MENU BUTTON */}
+<button
+  onClick={() => setIsOpen(true)}
+  className="
+    fixed
+    top-6
+    sm:top-7
+    md:top-8
+    right-4
+    sm:right-5
+    md:right-6
 
-        <div className="flex flex-col gap-[6px] items-end">
-          <span
-            className="
-              w-8
-              h-[1px]
-              bg-white
-              transition-all
-              duration-700
-              group-hover:w-10
-            "
-          />
+    lg:top-auto
+    lg:bottom-8
+    lg:right-8
 
-          <span
-            className="
-              w-5
-              h-[1px]
-              bg-white
-              transition-all
-              duration-700
-              group-hover:w-10
-            "
-          />
-        </div>
-      </button>
+    z-40
+    group
+    flex
+    items-center
+    gap-4
+    mix-blend-difference
+    text-white
+    cursor-pointer
+  "
+>
+  <span
+    className="
+      uppercase
+      tracking-[0.35em]
+      text-[10px]
+      sm:text-xs
+      font-medium
+      transition-all
+      duration-500
+      group-hover:tracking-[0.45em]
+    "
+  >
+    Menu
+  </span>
 
+  <div className="flex flex-col gap-[6px] items-end">
+    <span
+      className="
+        w-8
+        h-[1px]
+        bg-white
+        transition-all
+        duration-700
+        group-hover:w-10
+      "
+    />
+
+    <span
+      className="
+        w-5
+        h-[1px]
+        bg-white
+        transition-all
+        duration-700
+        group-hover:w-10
+      "
+    />
+  </div>
+</button>
       {/* OVERLAY */}
       <div
         ref={menuRef}
