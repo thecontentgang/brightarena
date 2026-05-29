@@ -14,8 +14,7 @@ const HeroSection = () => {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t: number) =>
-        Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
 
@@ -26,23 +25,18 @@ const HeroSection = () => {
     };
 
     lenis.on("scroll", ScrollTrigger.update);
-
     gsap.ticker.add(update);
-
     gsap.ticker.lagSmoothing(0);
 
     return () => {
       gsap.ticker.remove(update);
-
       lenis.off("scroll", ScrollTrigger.update);
-
       lenis.destroy();
-
       lenisRef.current = null;
     };
   }, []);
 
-  // --- GSAP ANIMATIONS ---
+  // --- GSAP ANIMATIONS (Only triggers on Desktop) ---
   useEffect(() => {
     if (window.innerWidth < 1024) return;
 
@@ -57,13 +51,15 @@ const HeroSection = () => {
         },
       });
 
+      // Text moves left and fades out
       tl.to(".hero-content", {
-        x: -100,
+        x: -100, 
         opacity: 0,
         ease: "power2.inOut",
         duration: 1,
       });
 
+      // Video wrapper expands leftward to cover the screen
       tl.to(
         ".hero-image-wrapper",
         {
@@ -119,137 +115,144 @@ const HeroSection = () => {
     }, sectionRef);
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) =>
-        trigger.kill()
-      );
-
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       ctx.revert();
     };
   }, []);
 
-  return (
-    <section ref={sectionRef} className="hero-section relative w-full  h-[120dvh] bg-[var(--color-primary)] overflow-hidden">
-      <div className="relative flex flex-col lg:block h-full w-full">
+  const handleLinkClick = () => {
+    window.scrollTo(0, 0);
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  };
 
+  return (
+    <section
+      ref={sectionRef}
+      className="hero-section relative w-full min-h-[100dvh] lg:h-[120dvh] bg-[var(--color-primary)] overflow-hidden"
+    >
+      {/* =========================================
+          MOBILE & TABLET LAYOUT (< 1024px)
+          Uniform spacing using flex gap, strictly ordered
+      ========================================= */}
+      <div className="flex flex-col lg:hidden w-full min-h-[100dvh] px-6 sm:px-8 md:px-10 py-16 top-10 gap-10 justify-center items-center text-center z-10 relative">
+        
+        {/* 1. Headline */}
+        <div className="w-full max-w-xl flex-shrink-0">
+          <h1 className="font-heading text-[3.2rem] sm:text-[3.5rem] md:text-[4.5rem] leading-[0.88] tracking-[-0.06em] text-[var(--color-background)]">
+            Elevating Spaces,
+            <br />
+            Mastering Luxury
+          </h1>
+        </div>
+
+        {/* 2. Video */}
+        <div className="w-full h-[45dvh] sm:h-[50dvh] relative flex-shrink-0 overflow-hidden rounded-sm">
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            src="/herovideo.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        </div>
+
+        {/* 3. Description */}
+        <div className="w-full max-w-xl flex-shrink-0">
+          <p className="max-w-[420px] mx-auto text-[var(--color-background)]/90 text-sm sm:text-[15px] md:text-[16px] leading-[1.9] font-body font-light">
+            Crafting timeless interiors with refined elegance, we create
+            sophisticated spaces that blend luxury, comfort, and modern living
+            into one seamless experience.
+          </p>
+        </div>
+          
+        {/* 4. Dual Buttons */}
+        <div className="flex flex-row items-center justify-center gap-4 w-full flex-shrink-0 mt-2">
+          <Link to="/projects" onClick={handleLinkClick}>
+            <button className="px-6 py-3.5 sm:px-8 sm:py-4 bg-[var(--color-background)] text-[var(--color-primary)] text-[10px] sm:text-[11px] uppercase tracking-[0.15em] font-semibold transition-all duration-300 hover:scale-105 shadow-md">
+              Projects
+            </button>
+          </Link>
+          <Link to="/contact" onClick={handleLinkClick}>
+            <button className="px-6 py-3.5 sm:px-8 sm:py-4 border border-[var(--color-background)] text-[var(--color-background)] text-[10px] sm:text-[11px] uppercase tracking-[0.15em] font-semibold transition-all duration-300 hover:scale-105 hover:bg-[var(--color-background)] hover:text-[var(--color-primary)]">
+              Contact
+            </button>
+          </Link>
+        </div>
+      </div>
+
+      {/* =========================================
+          DESKTOP LAYOUT (>= 1024px)
+          Text on LEFT (43%), Video on RIGHT (57%)
+      ========================================= */}
+      <div className="hidden lg:block relative h-full w-full">
+        
         {/* CONTENT (Left side) */}
-        <div className="hero-content order-2 lg:absolute lg:left-0 lg:top-0 lg:h-full lg:w-[43%] bg-[var(--color-primary)] flex items-center justify-center px-6 sm:px-8 md:px-10 lg:px-12 xl:px-14 py-10 sm:py-12 md:py-14 lg:py-16 min-h-[58dvh] lg:min-h-screen z-10">
-          <div className="max-w-xl w-full flex flex-col items-center text-center lg:items-start lg:text-left">
-            <h1 className="font-heading text-[3.2rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[6rem] xl:text-[5.6rem] leading-[0.88] tracking-[-0.06em] text-[var(--color-background)] z-20">
+        <div className="hero-content absolute left-0 -top-10 h-full w-[36%] bg-[var(--color-primary)] flex items-center justify-center px-12 lg:px-16 xl:px-24 py-16 z-10">
+          <div className="max-w-xl w-full flex flex-col items-start text-left">
+            <h1 className="font-heading text-[5.5rem] xl:text-[6rem] leading-[0.88] tracking-[-0.06em] text-[var(--color-background)] z-20">
               Elevating Spaces,
               <br />
               Mastering Luxury
             </h1>
-            <p className="mt-10  max-w-[420px] text-[var(--color-background)]/90 text-sm sm:text-[15px] md:text-[16px] leading-[1.9] font-body font-light">
+            <p className="mt-10 max-w-[420px] text-[var(--color-background)]/90 text-[16px] leading-[1.9] font-body font-light">
               Crafting timeless interiors with refined elegance, we create
               sophisticated spaces that blend luxury, comfort, and modern living
               into one seamless experience.
             </p>
-            <Link
-              to="/projects"
-              onClick={() => {
-                window.scrollTo(0, 0);
-
-                ScrollTrigger.getAll().forEach((trigger) =>
-                  trigger.kill()
-                );
-              }}
-            >
-              <button
-                className="
-      group
-      relative
-      translate-y-2
-      sm:mt-10
-      w-[90px]
-      h-[90px]
-      sm:w-[105px]
-      sm:h-[105px]
-      rounded-full
-      bg-[var(--color-background)]
-      text-[var(--color-primary)]
-      flex
-      flex-col
-      items-center
-      justify-center
-      overflow-hidden
-      transition-all
-      duration-500
-      hover:scale-105
-      shrink-0
-    "
-              >
-                <div
-                  className="
-        absolute
-        inset-0
-        rounded-full
-        border
-        border-[var(--color-background)]
-        scale-0
-        bg-[var(--color-primary)]
-        transition-all
-        duration-500
-        group-hover:scale-100
-      "
-                />
-
-                <span
-                  className="
-        relative
-        z-10
-        uppercase
-        tracking-[0.16em]
-        text-[8px]
-        sm:text-[9px]
-        leading-[1.7]
-        text-center
-        transition-colors
-        duration-500
-        group-hover:text-[var(--color-background)]
-      "
-                >
-                  View
-                  <br />
+            
+            {/* Dual Buttons */}
+            <div className="flex items-center gap-4 mt-10">
+              <Link to="/projects" onClick={handleLinkClick}>
+                <button className="px-8 py-4 bg-[var(--color-background)] text-[var(--color-primary)] text-[11px] xl:text-xs uppercase tracking-[0.15em] font-semibold transition-all duration-300 hover:scale-105 shadow-md">
                   Projects
-                </span>
-              </button>
-            </Link>
+                </button>
+              </Link>
+              <Link to="/contact" onClick={handleLinkClick}>
+                <button className="px-8 py-4 border border-[var(--color-background)] text-[var(--color-background)] text-[11px] xl:text-xs uppercase tracking-[0.15em] font-semibold transition-all duration-300 hover:scale-105 hover:bg-[var(--color-background)] hover:text-[var(--color-primary)]">
+                  Contact
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
 
-        {/* IMAGE WRAPPER */}
-       <div className="hero-image-wrapper order-1 lg:absolute lg:right-0 lg:top-0 h-[50dvh] sm:h-[58dvh] md:h-[65dvh] lg:h-full lg:w-[65%] relative flex-shrink-0 z-20 overflow-hidden">
+        {/* IMAGE/VIDEO WRAPPER (Right side) */}
+        {/* Removed the conflicting 'relative' class to ensure 'absolute right-0' works perfectly */}
+        <div className="hero-image-wrapper absolute right-0 top-0 h-full w-[64%] flex-shrink-0 z-20 overflow-hidden">
+          <video
+            className="hero-image absolute inset-0 w-full h-full object-cover"
+            src="/herovideo.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
 
-  <video
-    className="absolute inset-0 w-full h-full object-cover"
-    src="/herovideo.mp4"
-    autoPlay
-    muted
-    loop
-    playsInline
-  />
+          {/* EXPANDED CONTENT (Visible during scroll) */}
+          <div className="hero-expand-content absolute inset-0 flex flex-col items-center justify-center opacity-0 px-10 z-30">
+            <div className="max-w-5xl text-center flex flex-col items-center -translate-y-12">
+              <h2 className="font-heading font-bold text-[2.5rem] xl:text-[4rem] leading-[0.95] tracking-[-0.05em] flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.1em]">
+                {headingText.split(" ").map((word, index) => (
+                  <span
+                    key={index}
+                    className="hero-word text-transparent bg-clip-text bg-gradient-to-r from-[#F4EDDB] to-[#3A393F]"
+                  >
+                    {word}
+                  </span>
+                ))}
+              </h2>
+            </div>
 
-  {/* EXPANDED CONTENT */}
-  <div className="hero-expand-content absolute inset-0 hidden lg:flex flex-col items-center justify-center opacity-0 px-10 z-30">
-    <div className="max-w-5xl text-center flex flex-col items-center -translate-y-12">
-      <h2 className="font-heading font-bold text-[2.5rem] xl:text-[4rem] leading-[0.95] tracking-[-0.05em] flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.1em]">
-        {headingText.split(" ").map((word, index) => (
-          <span
-            key={index}
-            className="hero-word text-transparent bg-clip-text bg-gradient-to-r from-[#F4EDDB] to-[#3A393F]"
-          >
-            {word}
-          </span>
-        ))}
-      </h2>
-    </div>
+            <p className="hero-subtext absolute bottom-12 sm:bottom-16 z-40 max-w-3xl text-center opacity-0 translate-y-10 text-[#3A393F] text-sm sm:text-base md:text-lg leading-[1.8] font-body font-light px-4">
+              Our spaces breathe life into walls, warmth into rooms, and purpose
+              into every corner. At Bright Arena Interiors, we craft
+              environments that are distinctly yours — designed with intention,
+              finished with care.
+            </p>
+          </div>
+        </div>
 
-    <p className="hero-subtext absolute bottom-12 sm:bottom-16 z-40 max-w-3xl text-center opacity-0 translate-y-10 text-[#3A393F] text-sm sm:text-base md:text-lg leading-[1.8] font-body font-light px-4">
-      Our spaces breathe life into walls, warmth into rooms, and purpose into every corner. At Bright Arena Interiors, we craft environments that are distinctly yours — designed with intention, finished with care.
-    </p>
-  </div>
-
-</div>
       </div>
     </section>
   );

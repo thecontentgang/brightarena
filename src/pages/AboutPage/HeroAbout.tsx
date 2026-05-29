@@ -11,7 +11,7 @@ export default function HomePage() {
           <div className="max-w-4xl">
             {/* Main Heading */}
             <h1 
-              className="font-heading text-[#F4EDDB] text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] leading-[1.05] tracking-tight uppercase mb-10"
+              className="font-heading text-[#F4EDDB] text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] leading-[1.05] tracking-tight mb-10"
             >
               Crafted Spaces <br />
               For Elevated <br />

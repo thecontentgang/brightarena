@@ -75,229 +75,108 @@ export default function ProjectsShowcase() {
   const p = PROJECTS[index];
 
   return (
-    <>
-      <style>{`
-        .ps-wrap {
-          position: relative;
-          width: 100%;
-          min-height: 100vh;
-          overflow: hidden;
-          background: #111;
-          font-family: inherit;
-        }
+    <section
+      className="relative w-full h-[80vh] md:h-[90vh] overflow-hidden bg-[#111] font-inherit"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* IMAGE */}
+      <div className="absolute inset-0">
+        <AnimatePresence custom={dir} mode="sync">
+          <motion.div
+            key={p.id}
+            custom={dir}
+            variants={imgVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 1, ease: EASE_SLIDE }}
+            style={{ position: "absolute", inset: 0 }}
+          >
+            <Link to={`/projects/${p.slug}`} className="block w-full h-full">
+              <img
+                src={p.image}
+                alt={p.category}
+                className="w-full h-full object-cover block"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${p.id}/1600/900`;
+                }}
+              />
+            </Link>
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
-        .ps-img {
-          position: absolute;
-          inset: 0;
-        }
+      {/* GRADIENT */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.70)_0%,rgba(0,0,0,0.30)_60%,transparent_100%)]" />
 
-        .ps-img img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
+      {/* COUNTER */}
+      <div className="absolute top-[36px] right-[28px] md:top-[52px] md:right-[56px] text-[10px] tracking-[0.18em] text-white/35 tabular-nums z-10">
+        {String(index + 1).padStart(2, "0")} / {String(PROJECTS.length).padStart(2, "0")}
+      </div>
 
-        .ps-gradient {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to right, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.30) 60%, transparent 100%);
-        }
+      {/* PANEL */}
+      <div className="absolute inset-0 flex flex-col justify-end p-[36px_28px] md:p-[52px_56px] w-full max-w-full md:max-w-[560px] z-10">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`ey-${p.id}`}
+            className="text-[10px] tracking-[0.28em] uppercase text-white/45 mb-[14px]"
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.35, ease: EASE_TEXT }}
+          >
+            {p.category} · {p.location} · {p.year}
+          </motion.div>
+        </AnimatePresence>
 
-        .ps-panel {
-          position: absolute;
-          inset: 0;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          padding: 52px 56px;
-          max-width: 560px;
-        }
+        <AnimatePresence mode="wait">
+          <motion.h2
+            key={`t-${p.id}`}
+            className="text-[clamp(1.8rem,3vw,2.6rem)] font-light leading-[1.05] tracking-[-0.04em] text-white mb-8 font-body"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.6, ease: EASE_TEXT }}
+          >
+            {p.title}
+          </motion.h2>
+        </AnimatePresence>
 
-        .ps-eyebrow {
-          font-size: 10px;
-          letter-spacing: 0.28em;
-          text-transform: uppercase;
-          color: rgba(255,255,255,0.45);
-          margin-bottom: 14px;
-        }
+        <div className="flex items-center gap-3">
+          <button 
+            className="w-[38px] h-[38px] rounded-full border border-white/20 bg-white/5 text-white/70 flex items-center justify-center cursor-pointer transition-colors duration-250 shrink-0 hover:bg-white/15 hover:border-white/40 hover:text-white" 
+            onClick={prev} 
+            aria-label="Previous"
+          >
+            <ChevronLeft />
+          </button>
 
-        .ps-title {
-          font-size: clamp(1.8rem, 3vw, 2.6rem);
-          font-weight: 300;
-          line-height: 1.05;
-          letter-spacing: -0.04em;
-          color: #fff;
-          margin: 0 0 32px;
-        }
-
-        .ps-row {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-
-        .ps-btn {
-          width: 38px;
-          height: 38px;
-          border-radius: 50%;
-          border: 1px solid rgba(255,255,255,0.22);
-          background: rgba(255,255,255,0.06);
-          color: rgba(255,255,255,0.7);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: background 0.25s, border-color 0.25s;
-          flex-shrink: 0;
-        }
-
-        .ps-btn:hover {
-          background: rgba(255,255,255,0.14);
-          border-color: rgba(255,255,255,0.4);
-          color: #fff;
-        }
-
-        .ps-dots {
-          display: flex;
-          gap: 6px;
-          align-items: center;
-          flex: 1;
-        }
-
-        .ps-dot {
-          height: 1.5px;
-          flex: 1;
-          background: rgba(255,255,255,0.2);
-          border-radius: 1px;
-          cursor: pointer;
-          transition: background 0.3s;
-          border: none;
-          padding: 0;
-        }
-
-        .ps-dot.active {
-          background: #fff;
-        }
-
-        .ps-counter {
-          font-size: 10px;
-          letter-spacing: 0.18em;
-          color: rgba(255,255,255,0.35);
-          font-variant-numeric: tabular-nums;
-          position: absolute;
-          top: 52px;
-          right: 56px;
-        }
-
-        .ps-progress-bar {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          height: 1.5px;
-          width: 0%;
-          background: rgba(255,255,255,0.7);
-        }
-
-        @media (max-width: 768px) {
-          .ps-wrap { min-height: 100svh; }
-          .ps-panel { padding: 36px 28px; max-width: 100%; }
-          .ps-counter { top: 36px; right: 28px; }
-        }
-      `}</style>
-
-      <section
-        className="ps-wrap"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        {/* IMAGE */}
-        <div className="ps-img">
-          <AnimatePresence custom={dir} mode="sync">
-            <motion.div
-              key={p.id}
-              custom={dir}
-              variants={imgVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 1, ease: EASE_SLIDE }}
-              style={{ position: "absolute", inset: 0 }}
-            >
-              <Link to={`/projects/${p.slug}`} style={{ display: "block", width: "100%", height: "100%" }}>
-                <img
-                  src={p.image}
-                  alt={p.category}
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${p.id}/1600/900`;
-                  }}
-                />
-              </Link>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* GRADIENT */}
-        <div className="ps-gradient" />
-
-        {/* COUNTER */}
-        <div className="ps-counter">
-          {String(index + 1).padStart(2, "0")} / {String(PROJECTS.length).padStart(2, "0")}
-        </div>
-
-        {/* PANEL */}
-        <div className="ps-panel">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`ey-${p.id}`}
-              className="ps-eyebrow"
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.35, ease: EASE_TEXT }}
-            >
-              {p.category} · {p.location} · {p.year}
-            </motion.div>
-          </AnimatePresence>
-
-          <AnimatePresence mode="wait">
-            <motion.h2
-              key={`t-${p.id}`}
-              className="ps-title font-body"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.6, ease: EASE_TEXT }}
-            >
-              {p.title}
-            </motion.h2>
-          </AnimatePresence>
-
-          <div className="ps-row">
-            <button className="ps-btn" onClick={prev} aria-label="Previous">
-              <ChevronLeft />
-            </button>
-
-            <div className="ps-dots">
-              {PROJECTS.map((_, i) => (
-                <button
-                  key={i}
-                  className={`ps-dot${i === index ? " active" : ""}`}
-                  onClick={() => go(i, i > index ? 1 : -1)}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
-            </div>
-
-            <button className="ps-btn" onClick={next} aria-label="Next">
-              <ChevronRight />
-            </button>
+          <div className="flex items-center gap-[6px] flex-1">
+            {PROJECTS.map((_, i) => (
+              <button
+                key={i}
+                className={`h-[1.5px] flex-1 rounded-[1px] cursor-pointer transition-colors duration-300 border-none p-0 ${
+                  i === index ? "bg-white" : "bg-white/20"
+                }`}
+                onClick={() => go(i, i > index ? 1 : -1)}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
           </div>
-        </div>
 
-        {/* PROGRESS BAR */}
-        <div ref={barRef} className="ps-progress-bar" />
-      </section>
-    </>
+          <button 
+            className="w-[38px] h-[38px] rounded-full border border-white/20 bg-white/5 text-white/70 flex items-center justify-center cursor-pointer transition-colors duration-250 shrink-0 hover:bg-white/15 hover:border-white/40 hover:text-white" 
+            onClick={next} 
+            aria-label="Next"
+          >
+            <ChevronRight />
+          </button>
+        </div>
+      </div>
+
+      {/* PROGRESS BAR */}
+      <div ref={barRef} className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-white/70 z-10" />
+    </section>
   );
 }

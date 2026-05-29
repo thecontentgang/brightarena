@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
-  { value: "12+", label: "Years of Excellence" },
-  { value: "340", label: "Projects Delivered" },
-  { value: "98%", label: "Client Satisfaction" },
+  { value: "50+", label: "Projects Completed" },
+  { value: "100%", label: "Client Satisfaction" },
+  { value: "5+", label: "Years in Design" },
 ];
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
-
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -16,7 +15,7 @@ export default function AboutSection() {
       ([entry]) => {
         if (entry.isIntersecting) setVisible(true);
       },
-      { threshold: 0.1 }
+      { threshold: 0.15 }
     );
 
     if (sectionRef.current) {
@@ -31,25 +30,23 @@ export default function AboutSection() {
       ref={sectionRef}
       className="
         w-full
-        min-h-screen
-        bg-background
-        text-primary
-        py-24
-        md:py-32
+        bg-[var(--color-background)]
+        text-[var(--color-primary)]
+        py-16
+        md:py-24
         overflow-hidden
       "
     >
-      <div className="max-w-[1500px] mx-auto px-6 md:px-10 lg:px-16">
-
+      <div className="max-w-[1300px] mx-auto px-6 md:px-10 lg:px-12">
         {/* GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
-
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
           {/* ───────────────── LEFT ───────────────── */}
-          <div className="contents lg:block lg:col-span-5 lg:sticky lg:top-28">
-
+          <div className="contents lg:block lg:col-span-5 lg:sticky lg:top-24">
+            
             {/* TOP */}
-            <div className="order-1 space-y-8">
-
+            <div className="order-1 space-y-6">
+              
               {/* EYEBROW */}
               <div
                 className={`
@@ -62,22 +59,22 @@ export default function AboutSection() {
                   ${
                     visible
                       ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-8"
+                      : "opacity-0 translate-y-6"
                   }
                 `}
               >
-                <span className="w-12 h-[1px] bg-primary/40" />
-
+                <span className="w-8 h-[1px] bg-[var(--color-primary)]/40" />
                 <span
                   className="
-                    text-[10px]
-                    tracking-[0.3em]
+                    text-[9px]
+                    sm:text-[10px]
+                    tracking-[0.25em]
                     uppercase
-                    text-primary/60
+                    text-[var(--color-primary)]/60
                     font-medium
                   "
                 >
-                  Bright Arena Interiors
+                  About Bright Arena
                 </span>
               </div>
 
@@ -85,12 +82,12 @@ export default function AboutSection() {
               <h2
                 className={`
                   font-heading
-                  text-[3.8rem]
-                  sm:text-[5rem]
-                  lg:text-[7rem]
-                  leading-[0.88]
-                  tracking-[-0.06em]
-                  text-primary
+                  text-[3rem]
+                  sm:text-[3.8rem]
+                  lg:text-[4.5rem]
+                  leading-[0.95]
+                  tracking-[-0.04em]
+                  text-[var(--color-primary)]
                   transition-all
                   duration-1000
                   delay-100
@@ -98,31 +95,32 @@ export default function AboutSection() {
                   ${
                     visible
                       ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-8"
+                      : "opacity-0 translate-y-6"
                   }
                 `}
               >
                 Designing
-                <br />
+                
                 Spaces That
-                <br />
-                Feel Alive
+                
+                Tell Your Story
               </h2>
-
             </div>
 
             {/* BODY */}
             <div
               className={`
                 order-3
-                mt-12
-                lg:mt-20
-                space-y-7
-                text-subtext
-                text-[15px]
-                md:text-[17px]
-                leading-[2]
-                max-w-lg
+                mt-8
+                lg:mt-10
+                space-y-5
+                text-[var(--color-primary)]/80
+                text-[14px]
+                md:text-[15px]
+                leading-[1.8]
+                max-w-[420px]
+                font-body
+                font-light
                 transition-all
                 duration-1000
                 delay-200
@@ -130,35 +128,31 @@ export default function AboutSection() {
                 ${
                   visible
                     ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
+                    : "opacity-0 translate-y-6"
                 }
               `}
             >
-
               <p>
-                At{" "}
-                <strong className="font-semibold text-primary">
+                Founded in Hyderabad,{" "}
+                <strong className="font-semibold text-[var(--color-primary)]">
                   Bright Arena Interiors
-                </strong>
-                , we craft luxurious living experiences through
-                thoughtful spatial design, refined material
-                palettes, and timeless architectural aesthetics.
+                </strong>{" "}
+                is a premier design studio dedicated to transforming residential
+                and commercial spaces into refined environments.
               </p>
-
               <p>
-                Every project is approached with precision and
-                emotion — balancing functionality, elegance, and
-                warmth to create interiors that feel deeply
-                personal and effortlessly sophisticated.
+                We blend modern, minimalist aesthetics with luxurious comfort.
+                From bespoke modular kitchens to complete home renovations, we
+                manage every detail with uncompromising quality to ensure your
+                space feels deeply personal and effortlessly sophisticated.
               </p>
-
             </div>
 
             {/* CTA */}
             <div
               className={`
                 order-last
-                pt-12
+                pt-8
                 transition-all
                 duration-1000
                 delay-300
@@ -166,38 +160,38 @@ export default function AboutSection() {
                 ${
                   visible
                     ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
+                    : "opacity-0 translate-y-6"
                 }
               `}
             >
-
               <a
-                href="#contact"
+                href="#services"
                 className="
                   group
                   inline-flex
                   items-center
-                  gap-4
-                  px-8
-                  py-4
+                  gap-3
+                  px-6
+                  py-3
                   border
-                  border-primary/20
-                  text-[10px]
-                  tracking-[0.25em]
+                  bg-[var(--color-primary)]
+                  text-[9px]
+                  sm:text-[10px]
+                  tracking-[0.2em]
                   uppercase
                   font-semibold
-                  text-primary
-                  hover:bg-primary
-                  hover:text-background
+                  text-[var(--color-background)]
+                  hover:bg-[var(--color-primary)]
+                  hover:text-[var(--color-background)]
                   transition-all
                   duration-500
+                  
                 "
               >
-                Work With Us
-
+                Discover Our Services
                 <svg
-                  width="14"
-                  height="14"
+                  width="12"
+                  height="12"
                   viewBox="0 0 10 10"
                   fill="none"
                   className="
@@ -210,29 +204,27 @@ export default function AboutSection() {
                   <path
                     d="M1 9L9 1M9 1H3M9 1V7"
                     stroke="currentColor"
-                    strokeWidth="1.5"
+                    strokeWidth="1.2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                 </svg>
-
               </a>
-
             </div>
-
           </div>
 
           {/* ───────────────── RIGHT ───────────────── */}
           <div className="contents lg:block lg:col-span-7">
-
+            
             {/* IMAGE */}
             <div
               className={`
                 order-2
                 relative
                 w-full
-                aspect-[5/4]
+                aspect-[4/3]
                 overflow-hidden
+                rounded-sm
                 transition-all
                 duration-1000
                 delay-200
@@ -240,76 +232,27 @@ export default function AboutSection() {
                 ${
                   visible
                     ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-12"
+                    : "opacity-0 translate-y-10"
                 }
               `}
             >
-
               <img
-                src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=80"
-                alt="Bright Arena Luxury Interior"
+                src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80"
+                alt="Bright Arena Luxury Interior Design"
                 className="
                   w-full
                   h-full
                   object-cover
                   scale-[1.02]
                   hover:scale-[1.05]
-                  transition-all
-                  duration-1000
+                  transition-transform
+                  duration-[1.5s]
                   ease-out
                 "
               />
 
-              {/* OVERLAY */}
-              <div
-                className="
-                  absolute
-                  bottom-0
-                  left-0
-                  w-full
-                  bg-gradient-to-t
-                  from-black/75
-                  via-black/20
-                  to-transparent
-                  p-8
-                  md:p-12
-                  flex
-                  items-end
-                "
-              >
-
-                <div>
-
-                  <div
-                    className="
-                      text-[10px]
-                      tracking-[0.25em]
-                      uppercase
-                      text-white/60
-                      mb-3
-                    "
-                  >
-                    Bright Arena Interiors
-                  </div>
-
-                  <div
-                    className="
-                      font-heading
-                      text-2xl
-                      md:text-4xl
-                      text-white
-                      leading-tight
-                    "
-                  >
-                    Crafted with
-                    <br />
-                    precision & emotion
-                  </div>
-
-                </div>
-
-              </div>
-
+              
+             
             </div>
 
             {/* STATS */}
@@ -317,13 +260,14 @@ export default function AboutSection() {
               className={`
                 order-4
                 grid
-                grid-cols-1
+                grid-cols-2
                 sm:grid-cols-3
-                gap-10
-                py-16
+                gap-6
+                md:gap-10
+                pt-10
                 mt-10
                 border-t
-                border-primary/10
+                border-[var(--color-primary)]/10
                 transition-all
                 duration-1000
                 delay-300
@@ -331,54 +275,40 @@ export default function AboutSection() {
                 ${
                   visible
                     ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-12"
+                    : "opacity-0 translate-y-10"
                 }
               `}
             >
-
               {stats.map((s, i) => (
-                <div
-                  key={i}
-                  className="
-                    text-center
-                    sm:text-left
-                  "
-                >
-
+                <div key={i} className="text-left">
                   <div
                     className="
                       font-heading
-                      text-5xl
-                      lg:text-7xl
-                      tracking-[-0.05em]
-                      text-primary
-                      mb-3
+                      text-3xl
+                      lg:text-4xl
+                      tracking-[-0.03em]
+                      text-[var(--color-primary)]
+                      mb-1.5
                     "
                   >
                     {s.value}
                   </div>
-
                   <div
                     className="
-                      text-[10px]
+                      text-[9px]
                       uppercase
-                      tracking-[0.25em]
-                      text-primary/50
+                      tracking-[0.15em]
+                      text-[var(--color-primary)]/50
                       font-medium
                     "
                   >
                     {s.label}
                   </div>
-
                 </div>
               ))}
-
             </div>
-
           </div>
-
         </div>
-
       </div>
     </section>
   );

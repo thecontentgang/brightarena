@@ -144,7 +144,7 @@ function ProjectCard({ project, index }: { project: typeof projectsData[0]; inde
                 "
                 style={{ backgroundColor: project.bg, opacity: 0.12 }}
               />
-              <span className="relative">View Project</span>
+              <span className="relative font-semibold">View Project</span>
             </Link>
           </motion.div>
 

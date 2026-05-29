@@ -29,7 +29,7 @@ export default function ProjectsHero() {
           <div className="max-w-4xl">
 
             {/* each line clips up from below */}
-            <h1 className="font-heading text-[#F4EDDB] text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] leading-[1.05] tracking-tight uppercase mb-10">
+            <h1 className="font-heading text-[#F4EDDB] text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] leading-[1.05] tracking-tight  mb-10">
               {HEADING_LINES.map((line, i) => (
                 <span key={i} className="block overflow-hidden">
                   <motion.span
