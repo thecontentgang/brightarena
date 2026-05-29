@@ -72,7 +72,7 @@ export default function TeamSection() {
                   Founder
                 </p>
 
-                <h3 className="text-[#3A393F] text-3xl md:text-5xl font-semibold tracking-tight mb-4">
+                <h3 className="text-[#3A393F] text-3xl md:text-5xl font-heading font-semibold tracking-tight mb-4">
                   {founder.name}
                 </h3>
 

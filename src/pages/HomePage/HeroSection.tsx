@@ -139,7 +139,7 @@ const HeroSection = () => {
               <br />
               Mastering Luxury
             </h1>
-            <p className="mt-10 max-w-[520px] text-[var(--color-background)]/90 text-sm sm:text-[15px] md:text-[16px] leading-[1.9] font-body font-light">
+            <p className="mt-10  max-w-[420px] text-[var(--color-background)]/90 text-sm sm:text-[15px] md:text-[16px] leading-[1.9] font-body font-light">
               Crafting timeless interiors with refined elegance, we create
               sophisticated spaces that blend luxury, comfort, and modern living
               into one seamless experience.
@@ -219,33 +219,37 @@ const HeroSection = () => {
 
         {/* IMAGE WRAPPER */}
        <div className="hero-image-wrapper order-1 lg:absolute lg:right-0 lg:top-0 h-[50dvh] sm:h-[58dvh] md:h-[65dvh] lg:h-full lg:w-[65%] relative flex-shrink-0 z-20 overflow-hidden">
-          <iframe
-            className="hero-image absolute inset-0 w-full h-full scale-100 transform origin-right pointer-events-none"
-            src="https://www.youtube.com/embed/MbZFx64qgNU?autoplay=1&mute=1&controls=0&loop=1&playlist=MbZFx64qgNU&playsinline=1&rel=0&showinfo=0&modestbranding=1"
-            title="Luxury Interior Video"
-            allow="autoplay; fullscreen"
-            allowFullScreen
-          />
-          
-          
 
-          {/* EXPANDED CONTENT */}
-          <div className="hero-expand-content absolute inset-0 hidden lg:flex flex-col items-center justify-center opacity-0 px-10 z-30">
-            <div className="max-w-5xl text-center flex flex-col items-center -translate-y-12">
-              <h2 className="font-heading font-bold text-[2.5rem] xl:text-[4rem] leading-[0.95] tracking-[-0.05em] flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.1em]">
-                {headingText.split(" ").map((word, index) => (
-                  <span key={index} className="hero-word text-transparent bg-clip-text bg-gradient-to-r from-[#F4EDDB] to-[#3A393F]">
-                    {word}
-                  </span>
-                ))}
-              </h2>
-            </div>
-            <p className="hero-subtext absolute bottom-12 sm:bottom-16 z-40 max-w-3xl text-center opacity-0 translate-y-10 text-[#3A393F] text-sm sm:text-base md:text-lg leading-[1.8] font-body font-light px-4">
-              Our spaces breathe life into walls, warmth into rooms, and purpose into every corner. At Bright Arena Interiors, we craft environments that are distinctly yours — designed with intention, finished with care.
-            </p>
-          </div>
+  <video
+    className="absolute inset-0 w-full h-full object-cover"
+    src="/herovideo.mp4"
+    autoPlay
+    muted
+    loop
+    playsInline
+  />
 
-        </div>
+  {/* EXPANDED CONTENT */}
+  <div className="hero-expand-content absolute inset-0 hidden lg:flex flex-col items-center justify-center opacity-0 px-10 z-30">
+    <div className="max-w-5xl text-center flex flex-col items-center -translate-y-12">
+      <h2 className="font-heading font-bold text-[2.5rem] xl:text-[4rem] leading-[0.95] tracking-[-0.05em] flex flex-wrap justify-center gap-x-[0.25em] gap-y-[0.1em]">
+        {headingText.split(" ").map((word, index) => (
+          <span
+            key={index}
+            className="hero-word text-transparent bg-clip-text bg-gradient-to-r from-[#F4EDDB] to-[#3A393F]"
+          >
+            {word}
+          </span>
+        ))}
+      </h2>
+    </div>
+
+    <p className="hero-subtext absolute bottom-12 sm:bottom-16 z-40 max-w-3xl text-center opacity-0 translate-y-10 text-[#3A393F] text-sm sm:text-base md:text-lg leading-[1.8] font-body font-light px-4">
+      Our spaces breathe life into walls, warmth into rooms, and purpose into every corner. At Bright Arena Interiors, we craft environments that are distinctly yours — designed with intention, finished with care.
+    </p>
+  </div>
+
+</div>
       </div>
     </section>
   );

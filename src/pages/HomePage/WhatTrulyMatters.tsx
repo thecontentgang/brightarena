@@ -302,8 +302,6 @@ export default function WhatTrulyMatters() {
         min-h-screen
         bg-[var(--color-primary)]
         overflow-hidden
-        pt-0
-        lg:py-0
       "
       aria-label="What truly matters to us"
     >
@@ -321,8 +319,6 @@ export default function WhatTrulyMatters() {
           justify-center
           px-6
           sm:px-12
-          py-10
-          lg:py-0
           lg:min-h-screen
         "
       >
@@ -412,8 +408,8 @@ export default function WhatTrulyMatters() {
           flex
           flex-col
           justify-center
-          py-8
-          lg:py-0
+          
+          
         "
       >
 

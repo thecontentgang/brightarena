@@ -7,21 +7,25 @@ import { Link } from "react-router-dom";
 const services = [
   {
     title: "Home Interior Design",
+    slug: "home-interior-design", 
     description:
       "We craft luxurious and functional residential interiors tailored to your lifestyle, combining comfort, elegance, and modern aesthetics seamlessly.",
   },
   {
     title: "Commercial Interior Design",
+    slug: "commercial-interior-design",
     description:
       "Premium commercial interiors designed to elevate brand presence, improve customer experience, and create visually impactful environments.",
   },
   {
     title: "Office Interior Design",
+    slug: "office-interior-design",
     description:
       "Intelligent workspace designs that enhance productivity, collaboration, and brand identity through refined spatial planning.",
   },
   {
     title: "2D & 3D Virtual Design",
+     slug: "2d-3d-virtual-design",
     description:
       "Visualize your dream interiors with immersive 2D planning and realistic 3D rendering before execution begins.",
   },
@@ -211,45 +215,42 @@ export default function ServicesPage() {
             </div>
 
             {/* BUTTON */}
-            <div className="mt-10">
-
-              <button
-                className="
-                  group/btn
-                  inline-flex
-                  items-center
-                  gap-3
-                  text-[#F4EDDB]
-                  uppercase
-                  tracking-[0.18em]
-                  text-[10px]
-                "
-              >
-
-                Learn More
-
-                <span
-                  className="
-                    w-10
-                    h-10
-                    rounded-full
-                    border
-                    border-[#F4EDDB]/20
-                    flex
-                    items-center
-                    justify-center
-                    transition-all
-                    duration-500
-                    group-hover/btn:bg-[#F4EDDB]
-                    group-hover/btn:text-[#3A393F]
-                  "
-                >
-                  <ArrowUpRight size={16} />
-                </span>
-
-              </button>
-
-            </div>
+           {/* BUTTON */}
+<div className="mt-10">
+  <Link
+    to={`/services/${service.slug}`}
+    className="
+      group/btn
+      inline-flex
+      items-center
+      gap-3
+      text-[#F4EDDB]
+      uppercase
+      tracking-[0.18em]
+      text-[10px]
+    "
+  >
+    Learn More
+    <span
+      className="
+        w-10
+        h-10
+        rounded-full
+        border
+        border-[#F4EDDB]/20
+        flex
+        items-center
+        justify-center
+        transition-all
+        duration-500
+        group-hover/btn:bg-[#F4EDDB]
+        group-hover/btn:text-[#3A393F]
+      "
+    >
+      <ArrowUpRight size={16} />
+    </span>
+  </Link>
+</div>
 
           </div>
 
