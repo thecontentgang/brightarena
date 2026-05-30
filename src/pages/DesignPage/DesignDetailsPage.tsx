@@ -129,7 +129,7 @@ export default function DesignDetailsPage() {
       </section>
 
       {/* FEATURES */}
-      <section className="pb-24 md:pb-32">
+      {/* <section className="pb-24 md:pb-32">
 
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
 
@@ -190,7 +190,7 @@ export default function DesignDetailsPage() {
 
         </div>
 
-      </section>
+      </section> */}
 
       {/* GALLERY */}
       <section className="pb-24 md:pb-32 lg:pb-40">

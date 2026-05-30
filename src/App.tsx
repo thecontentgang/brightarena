@@ -19,6 +19,8 @@ import BlogPage from "./pages/BlogPage/BlogPage";
 import BlogDetailsPage from "./pages/BlogPage/BlogDetailPage";
 
 import ScrollToTop from "./components/ScrollToTop";
+import Breadcrumbs from "./components/BreadCrumbs";
+
 
 export default function App() {
   return (
@@ -29,6 +31,7 @@ export default function App() {
 
       {/* NAVBAR */}
       <Navbar />
+      <Breadcrumbs />
 
       {/* MAIN */}
       <main className="min-h-screen bg-background text-primary selection:bg-primary selection:text-background">

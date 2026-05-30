@@ -247,7 +247,7 @@ export default function HorizontalStatsSection() {
         {/* ───────────────── SLIDE 2: PROJECTS (COMPACT & SHIFTED UP) ───────────────── */}
         <div className={`slide-2 ${slideWrapper} bg-[#3A393F] text-[#F4EDDB]`}>
           {/* Added lg:-translate-y-8 to shift the entire block slightly up on desktop/laptop */}
-          <div className="w-full max-w-[1050px] mx-auto flex flex-col justify-center h-full lg:-translate-y-20 py-20">
+          <div className="w-full max-w-[1050px] mx-auto flex flex-col justify-center h-full * translate-y-0 lg:-translate-y-8 ">
             
             {/* TOP HEADER */}
             <div className="flex items-center justify-center lg:justify-start gap-4 mb-6 lg:mb-8">
@@ -320,120 +320,135 @@ export default function HorizontalStatsSection() {
        
         {/* ───────────────── SLIDE 3: GOOGLE REVIEWS (CALM & CARDS) ───────────────── */}
         <div className={`slide-3 ${slideWrapper} bg-[#F4EDDB] text-[#3A393F]`}>
-          <div className="w-full max-w-[1200px] mx-auto flex flex-col items-center justify-center gap-10 md:gap-16">
-            
-            {/* TOP: GOOGLE RATING HEADER */}
-            <div className="flex flex-col items-center text-center">
-              {/* Google Brand Tag */}
-              <div className="flex items-center gap-2 mb-4 md:mb-6">
-                <svg
-                  viewBox="0 0 24 24"
-                  width="18"
-                  height="18"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="opacity-80"
-                >
-                  <path
-                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                    fill="#4285F4"
-                  />
-                  <path
-                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                    fill="#34A853"
-                  />
-                  <path
-                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                    fill="#FBBC05"
-                  />
-                  <path
-                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                    fill="#EA4335"
-                  />
-                </svg>
-                <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] font-medium opacity-60">
-                  Google My Business
+  <div className="w-full max-w-[1200px] mx-auto flex flex-col items-center justify-center gap-10 md:gap-16">
+    
+    {/* TOP: GOOGLE RATING HEADER */}
+    <div className="flex flex-col items-center text-center">
+      {/* Google Brand Tag */}
+      <div className="flex items-center gap-2 mb-4 md:mb-6">
+        <svg
+          viewBox="0 0 24 24"
+          width="18"
+          height="18"
+          xmlns="http://www.w3.org/2000/svg"
+          className="opacity-80"
+        >
+          <path
+            d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+            fill="#4285F4"
+          />
+          <path
+            d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+            fill="#34A853"
+          />
+          <path
+            d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+            fill="#FBBC05"
+          />
+          <path
+            d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+            fill="#EA4335"
+          />
+        </svg>
+        <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] font-medium opacity-60">
+          Google My Business
+        </span>
+      </div>
+
+      {/* Rating Numbers */}
+      <div className="flex flex-col md:flex-row items-center md:items-end gap-2 md:gap-5">
+        <div className="flex items-start leading-none tracking-tighter">
+          {/* Changed 4.9 to cursive */}
+          <span className="font-body text-[5rem] sm:text-[3rem] md:text-[7.5rem] leading-none text-[#3A393F]">
+            4.9
+          </span>
+          <span className="font-heading text-2xl md:text-4xl opacity-40 mt-2 md:mt-4 ml-2">
+            /5
+          </span>
+        </div>
+        
+        <div className="flex flex-col items-center md:items-start pb-2 md:pb-4">
+          <div className="text-xl md:text-2xl tracking-widest text-[#D4AF37] mb-1 md:mb-2 drop-shadow-sm">
+            ★★★★★
+          </div>
+          <p className="text-[10px] md:text-xs uppercase tracking-[0.1em] opacity-40">
+            Based on 150+ reviews
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* BOTTOM: GOOGLE REVIEW CARDS */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10 w-full">
+      {reviews.map((review, idx) => (
+        <div
+          key={idx}
+          className="
+            review-card 
+            relative
+            flex flex-col gap-5 
+            bg-white 
+            p-6 md:p-8 
+            rounded-xl 
+            border border-gray-100
+            border-t-4 border-t-[#D4AF37]
+            shadow-md hover:shadow-2xl
+            transition-all duration-300 ease-in-out
+            transform hover:-translate-y-1
+          "
+        >
+          {/* Card Header: Avatar & Name */}
+          <div className="flex justify-between items-start">
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <img
+                  src={review.avatar}
+                  alt={review.name}
+                  className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover shrink-0 shadow-sm"
+                />
+                {/* Small Google indicator badge on the avatar */}
+                <div className="absolute -bottom-1 -right-1 bg-white rounded-full p-1 shadow-sm">
+                  <svg viewBox="0 0 24 24" width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+                  </svg>
+                </div>
+              </div>
+              
+              <div className="flex flex-col">
+                <span className="text-base md:text-lg font-semibold text-gray-800 tracking-tight">
+                  {review.name}
                 </span>
-              </div>
-
-              {/* Rating Numbers */}
-              <div className="flex flex-col md:flex-row items-center md:items-end gap-2 md:gap-5">
-                <div className="flex items-start leading-none tracking-tighter">
-                  <span className="font-heading text-[5rem] sm:text-[6rem] md:text-[7.5rem] leading-none">
-                    4.9
-                  </span>
-                  <span className="font-heading text-2xl md:text-4xl opacity-40 mt-2 md:mt-4 ml-2">
-                    /5
-                  </span>
-                </div>
-                
-                <div className="flex flex-col items-center md:items-start pb-2 md:pb-4">
-                  <div className="text-xl md:text-2xl tracking-widest text-[#D4AF37] mb-1 md:mb-2">
-                    ★★★★★
-                  </div>
-                  <p className="text-[10px] md:text-xs uppercase tracking-[0.1em] opacity-40">
-                    Based on 150+ reviews
-                  </p>
+                {/* Stars moved immediately under the name for a tighter layout */}
+                <div className="text-[#D4AF37] text-sm md:text-sm tracking-widest mt-0.5">
+                  ★★★★★
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* BOTTOM: GOOGLE REVIEW CARDS */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-8 w-full">
-              {reviews.map((review, idx) => (
-                <div
-                  key={idx}
-                  className="
-                    review-card 
-                    flex flex-col gap-4 
-                    bg-[#FCFAF8] /* Very soft, warm white */
-                    p-6 md:p-8 
-                    rounded-2xl 
-                    border border-[#3A393F]/5 
-                    shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]
-                    hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.08)]
-                    transition-all duration-500 ease-out
-                  "
-                >
-                  {/* Card Header: Avatar & Name */}
-                  <div className="flex justify-between items-start">
-                    <div className="flex items-center gap-3 md:gap-4">
-                      <img
-                        src={review.avatar}
-                        alt={review.name}
-                        className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover shrink-0"
-                      />
-                      <div className="flex flex-col">
-                        <span className="text-sm md:text-base font-medium">
-                          {review.name}
-                        </span>
-                        <span className="text-[10px] opacity-40 mt-0.5">
-                          Verified Client
-                        </span>
-                      </div>
-                    </div>
-                    {/* Google G icon indicator on card */}
-                    <div className="w-4 h-4 opacity-20">
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="currentColor" />
-                      </svg>
-                    </div>
-                  </div>
+          {/* Review Text */}
+          <p className="text-sm md:text-base text-gray-600 font-light leading-relaxed font-body italic">
+            "{review.text}"
+          </p>
 
-                  {/* Stars */}
-                  <div className="text-[#D4AF37] text-sm md:text-base tracking-wider">
-                    ★★★★★
-                  </div>
-
-                  {/* Review Text */}
-                  <p className="text-sm md:text-[15px] opacity-70 font-light leading-[1.8] font-body mt-1">
-                    "{review.text}"
-                  </p>
-                </div>
-              ))}
-            </div>
-
+          {/* Footer Verified Tag */}
+          <div className="mt-auto pt-2">
+            <span className="inline-flex items-center gap-1 text-[11px] uppercase tracking-wider text-green-600 font-medium">
+              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              Verified Client
+            </span>
           </div>
         </div>
+      ))}
+    </div>
+
+  </div>
+</div>
 
        {/* ───────────────── SLIDE 4: TRUST (MONUMENTAL CENTERED) ───────────────── */}
         <div className={`slide-4 ${slideWrapper} bg-[#3A393F] text-[#F4EDDB]`}>
@@ -478,20 +493,20 @@ export default function HorizontalStatsSection() {
                 Trusted by Industry Leaders
               </p>
               
-              <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12 md:gap-16 lg:gap-24 w-full">
-                {clientLogos.slice(0, 5).map((logo, idx) => (
-                  <div
-                    key={idx}
-                    className="client-logo flex items-center justify-center h-8 md:h-12"
-                  >
-                    <img
-                      src={logo}
-                      alt="Client logo"
-                      className="max-w-full max-h-full object-contain invert opacity-40 hover:opacity-100 hover:scale-105 transition-all duration-500 ease-out cursor-pointer"
-                    />
-                  </div>
-                ))}
-              </div>
+             <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12 md:gap-16 lg:gap-24 w-full">
+  {clientLogos.slice(0, 5).map((logo, idx) => (
+    <div
+      key={idx}
+      className="client-logo flex items-center justify-center h-8 md:h-12"
+    >
+      <img
+        src={logo}
+        alt={`Client logo ${idx + 1}`}
+        className="max-w-full max-h-full object-contain hover:scale-105 transition-transform duration-500 ease-out cursor-pointer"
+      />
+    </div>
+  ))}
+</div>
             </div>
 
           </div>

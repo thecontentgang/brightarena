@@ -32,8 +32,8 @@ export default function AboutSection() {
         w-full
         bg-[var(--color-background)]
         text-[var(--color-primary)]
-        py-16
-        md:py-24
+        py-8
+        md:py-14
         overflow-hidden
       "
     >
@@ -42,10 +42,10 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* ───────────────── LEFT ───────────────── */}
-          <div className="contents lg:block lg:col-span-5 lg:sticky lg:top-24">
+          <div className="contents lg:block lg:col-span-5 lg:sticky lg:top-14">
             
             {/* TOP */}
-            <div className="order-1 space-y-6">
+            <div className="order-1 space-y-3">
               
               {/* EYEBROW */}
               <div
@@ -113,7 +113,7 @@ export default function AboutSection() {
                 order-3
                 mt-8
                 lg:mt-10
-                space-y-5
+                space-y-2
                 text-[var(--color-primary)]/80
                 text-[14px]
                 md:text-[15px]
@@ -152,7 +152,7 @@ export default function AboutSection() {
             <div
               className={`
                 order-last
-                pt-8
+                pt-4
                 transition-all
                 duration-1000
                 delay-300
@@ -264,8 +264,8 @@ export default function AboutSection() {
                 sm:grid-cols-3
                 gap-6
                 md:gap-10
-                pt-10
-                mt-10
+                pt-6
+                mt-2
                 border-t
                 border-[var(--color-primary)]/10
                 transition-all

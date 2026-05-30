@@ -205,7 +205,7 @@ export default function WhatTrulyMatters() {
         relative w-full 
         bg-[var(--color-background)] 
         px-6 sm:px-10 md:px-16 lg:px-20 xl:px-24
-        py-24 sm:py-32 lg:py-40
+        py-24 sm:py-32 lg:py-30
       "
       aria-label="What truly matters to us"
     >
@@ -238,7 +238,7 @@ export default function WhatTrulyMatters() {
             "
           >
             {["What truly", "matters to us."].map((word, idx) => (
-              <span key={idx} className="block overflow-hidden pb-2 lg:pb-4">
+              <span key={idx} className="block overflow-hidden pb-2 lg:pb-2">
                 <span className="gsap-word block origin-bottom-left">
                   {word}
                 </span>

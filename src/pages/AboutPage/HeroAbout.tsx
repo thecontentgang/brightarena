@@ -5,7 +5,7 @@ export default function HomePage() {
       {/* =========================================
           SECTION 1: Typography & Narrative Hero
       ========================================= */}
-      <section className="w-full min-h-[75vh] flex items-center bg-[#3A393F] px-6 md:px-12 lg:px-24 py-20 overflow-hidden">
+      <section className="w-full min-h-[75vh] flex items-center bg-[#3A393F] px-6 md:px-12 lg:px-24 py-10 overflow-hidden">
         <div className="max-w-7xl w-full mx-auto">
           
           <div className="max-w-4xl">

@@ -36,7 +36,7 @@ export default function ContactSection() {
           background: var(--color-primary, #3A393F);
           display: flex;
           align-items: center;
-          padding: 100px 80px;
+          padding: 60px 40px;
           box-sizing: border-box;
           font-family: var(--font-body, 'Work Sans', sans-serif);
         }
