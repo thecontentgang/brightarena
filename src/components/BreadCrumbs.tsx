@@ -12,12 +12,15 @@ export default function Breadcrumbs(): React.JSX.Element | null {
   const pathSegments: string[] = pathname.split("/").filter((segment) => segment);
 
   return (
-    
     <nav 
       aria-label="Breadcrumb" 
-      className="absolute top-0 left-0 w-full z-50 bg-transparent px-6 md:px-12 lg:px-24 pt-6 md:pt-8 pointer-events-none"
+      /* KEY CHANGES HERE:
+        - Added `mt-[70px] sm:mt-[80px] lg:mt-0`: This pushes the breadcrumbs down 
+          exactly past your fixed mobile/tablet navbar height.
+        - Keeps it tight on desktop (`lg:mt-0`) where your main navbar layout is active.
+      */
+      className="absolute top-0 left-0 w-full z-30 mt-[70px] sm:mt-[80px] lg:mt-0 bg-transparent px-6 md:px-12 lg:px-24 pt-4 md:pt-6 pointer-events-none"
     >
-      {/* Added `pointer-events-auto` here so links remain clickable, while the empty space around them doesn't block underlying elements */}
       <ol className="max-w-7xl mx-auto flex items-center space-x-2 text-xs md:text-sm tracking-wide pointer-events-auto">
         {/* Absolute Home Node */}
         <li>
@@ -31,11 +34,8 @@ export default function Breadcrumbs(): React.JSX.Element | null {
 
         {/* Dynamically parsed loop mapping through router array */}
         {pathSegments.map((segment: string, index: number) => {
-          // Construct targeted URL route step-by-step
           const to: string = `/${pathSegments.slice(0, index + 1).join("/")}`;
           const isLast: boolean = index === pathSegments.length - 1;
-          
-          // Replaces hyphens with spaces for a natural readable look
           const label: string = decodeURIComponent(segment).replace(/-/g, " ");
 
           return (
@@ -44,7 +44,6 @@ export default function Breadcrumbs(): React.JSX.Element | null {
                 /
               </span>
               {isLast ? (
-                // Active/Current terminal node
                 <span 
                   aria-current="page" 
                   className="text-[white] font-medium capitalize"
@@ -52,7 +51,6 @@ export default function Breadcrumbs(): React.JSX.Element | null {
                   {label}
                 </span>
               ) : (
-                // Walkable parent link route
                 <Link
                   to={to}
                   className="text-[white]/60 hover:text-[white] font-light transition-colors capitalize"
