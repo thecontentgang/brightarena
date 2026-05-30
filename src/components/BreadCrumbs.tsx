@@ -11,22 +11,25 @@ export default function Breadcrumbs(): React.JSX.Element | null {
   // Split path into segments and clean up empty elements
   const pathSegments: string[] = pathname.split("/").filter((segment) => segment);
 
+  // Responsive Styles for the text blocks
+  // Mobile/Tablet: Vertical right-to-left layout | Desktop: Standard horizontal flow
+  const verticalTextStyles: React.CSSProperties = {
+    writingMode: window.innerWidth < 1024 ? "vertical-rl" : "horizontal-tb",
+  };
+
   return (
     <nav 
       aria-label="Breadcrumb" 
-      /* KEY CHANGES HERE:
-        - Added `mt-[70px] sm:mt-[80px] lg:mt-0`: This pushes the breadcrumbs down 
-          exactly past your fixed mobile/tablet navbar height.
-        - Keeps it tight on desktop (`lg:mt-0`) where your main navbar layout is active.
-      */
-      className="absolute top-0 left-0 w-full z-30 mt-[70px] sm:mt-[80px] lg:mt-0 bg-transparent px-6 md:px-12 lg:px-24 pt-4 md:pt-6 pointer-events-none"
+      className="fixed top-[90px] sm:top-[100px] right-0 w-auto h-auto z-50 bg-transparent pr-6 md:pr-4 pointer-events-none lg:absolute lg:top-0 lg:left-0 lg:right-auto lg:w-full lg:h-auto lg:mt-0 lg:px-12  lg:pt-8 lg:pr-0"
     >
-      <ol className="max-w-7xl mx-auto flex items-center space-x-2 text-xs md:text-sm tracking-wide pointer-events-auto">
+      <ol className="flex flex-col items-center space-y-4 text-[10px] md:text-xs tracking-[0.2em] uppercase pointer-events-auto lg:flex-row lg:items-center lg:space-y-0 lg:space-x-2 lg:text-sm lg:max-w-7xl lg:mx-auto lg:tracking-widest">
+        
         {/* Absolute Home Node */}
-        <li>
+        <li className="flex items-center">
           <Link 
             to="/" 
-            className="text-[white]/60 hover:text-[white] font-light transition-colors"
+            className="text-[white]/60 hover:text-[white] font-light transition-colors select-none"
+            style={verticalTextStyles}
           >
             Home
           </Link>
@@ -39,26 +42,33 @@ export default function Breadcrumbs(): React.JSX.Element | null {
           const label: string = decodeURIComponent(segment).replace(/-/g, " ");
 
           return (
-            <li key={to} className="flex items-center space-x-2">
-              <span className="text-[white]/30 text-[10px] select-none" aria-hidden="true">
-                /
+            <React.Fragment key={to}>
+              
+              <span className="text-[white]/30 text-[9px] select-none py-1 lg:py-0" aria-hidden="true">
+                <span className="lg:hidden">•</span>
+                <span className="hidden lg:inline">/</span>
               </span>
-              {isLast ? (
-                <span 
-                  aria-current="page" 
-                  className="text-[white] font-medium capitalize"
-                >
-                  {label}
-                </span>
-              ) : (
-                <Link
-                  to={to}
-                  className="text-[white]/60 hover:text-[white] font-light transition-colors capitalize"
-                >
-                  {label}
-                </Link>
-              )}
-            </li>
+              
+              <li className="flex items-center">
+                {isLast ? (
+                  <span 
+                    aria-current="page" 
+                    className="text-[white] font-medium capitalize"
+                    style={verticalTextStyles}
+                  >
+                    {label}
+                  </span>
+                ) : (
+                  <Link
+                    to={to}
+                    className="text-[white]/60 hover:text-[white] font-light transition-colors capitalize"
+                    style={verticalTextStyles}
+                  >
+                    {label}
+                  </Link>
+                )}
+              </li>
+            </React.Fragment>
           );
         })}
       </ol>
